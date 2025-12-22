@@ -74,42 +74,130 @@
 <body>
     <img id="logo" src="/static/logo.png">
     <canvas class="webgl"></canvas>
-    
+
+    <!-- ========== FEATURE CONTROLS ========== -->
+    <!-- <div id="featureControls" style="position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 10px;">
+        <button onclick="toggleDoors()" style="padding: 10px 15px; background: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+            🚪 Mở/Đóng Cửa
+        </button>
+
+        <button onclick="toggleExplode()" style="padding: 10px 15px; background: #00aa00; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+            🔧 Tháo Rời
+        </button>
+
+        <button id="autoRotateBtn" onclick="toggleAutoRotate()" style="padding: 10px 15px; background: #0088ff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+            🔄 Xoay Tự Động
+        </button>
+
+        <button onclick="saveConfiguration()" style="padding: 10px 15px; background: #ff8800; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+            💾 Lưu Cấu Hình
+        </button>
+
+        <button onclick="loadConfiguration()" style="padding: 10px 15px; background: #8800ff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+            📂 Tải Cấu Hình
+        </button>
+
+        <button onclick="takeScreenshot()" style="padding: 10px 15px; background: #ff0088; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+            📸 Chụp Ảnh
+        </button>
+    </div> -->
+
+    <!-- ========== CAMERA VIEWS ========== -->
+    <!-- <div id="cameraControls" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 10px; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 10px;">
+        <button onclick="setCameraView('front')" style="padding: 8px 12px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-size: 12px;">
+            📷 Trước
+        </button>
+        <button onclick="setCameraView('back')" style="padding: 8px 12px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-size: 12px;">
+            📷 Sau
+        </button>
+        <button onclick="setCameraView('side')" style="padding: 8px 12px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-size: 12px;">
+            📷 Bên
+        </button>
+        <button onclick="setCameraView('top')" style="padding: 8px 12px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-size: 12px;">
+            📷 Trên
+        </button>
+        <button onclick="setCameraView('interior')" style="padding: 8px 12px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-size: 12px;">
+            📷 Nội Thất
+        </button>
+    </div> -->
+
     <div id="configure">
-        <h2> Colore configure</h2>
+        <h2>🎨 Colore Carrozzeria (Vỏ xe)</h2>
     <form class="conf">
-        <input class="configure" type="radio" name="color" value="0xb5FF4b" id="0"> verde </input>
-        <input class="configure" type="radio" name="color" value="0xff0000" id="0"> rosso </input>
-        <input class="configure" type="radio" name="color" value="0xee1111" id="0"> rosso corsa </input>
-        <input class="configure" type="radio" name="color" value="0x000000" id="0"> nero </input>
-        <input class="configure" type="radio" name="color" value="0xFFFF00" id="0"> giallo </input>
+        <input class="configure" type="radio" name="color" value="0xb5FF4b" id="0"> Verde </input>
+        <input class="configure" type="radio" name="color" value="0xff0000" id="0"> Rosso </input>
+        <input class="configure" type="radio" name="color" value="0xee1111" id="0"> Rosso Corsa </input>
+        <input class="configure" type="radio" name="color" value="0x000000" id="0"> Nero </input>
+        <input class="configure" type="radio" name="color" value="0xFFFF00" id="0"> Giallo </input>
+        <input class="configure" type="radio" name="color" value="0xffffff" id="0"> Bianco </input>
+        <input class="configure" type="radio" name="color" value="0x0088ff" id="0"> Blu </input>
+        <input class="configure" type="radio" name="color" value="0xc0c0c0" id="0"> Argento </input>
      </form>
     </div>
+    
     <div id="dettagli">
-        <h2> Colore dettagli</h2>
+        <h2>⚙️ Colore Dettagli (Chi tiết)</h2>
     <form class="conf">
-      
-        <input   class="configure" type="radio" name="color" value="0x222222" id="1"> grigio </input>
-        <input   class="configure"type="radio" name="color" value="0x111111" id="1"> carbon </input>
-        <input   class="configure"type="radio" name="color" value="0x000000" id="1"> nero </input>
-        <input  class="configure" type="radio" name="color" value="0xFFFF00" id="1"> giallo </input>
+        <input class="configure" type="radio" name="color" value="0x222222" id="1"> Grigio </input>
+        <input class="configure" type="radio" name="color" value="0x111111" id="1"> Carbon </input>
+        <input class="configure" type="radio" name="color" value="0x000000" id="1"> Nero </input>
+        <input class="configure" type="radio" name="color" value="0xFFFF00" id="1"> Giallo </input>
+        <input class="configure" type="radio" name="color" value="0xff0000" id="1"> Rosso </input>
+        <input class="configure" type="radio" name="color" value="0xffd700" id="1"> Oro </input>
      </form>
     </div>
+    
     <div id="sedili">
-        <h2> Colore sedili</h2>
+        <h2>🪑 Colore Sedili (Ghế)</h2>
     <form class="conf">
-        <input  class="configure" type="radio" name="color" value="0xb5FF4b" id="2"> verde </input>
-        <input  class="configure" type="radio" name="color" value="0xff0000" id="2"> rosso </input>
-        <input   class="configure" type="radio" name="color" value="0x000000" id="2"> nero </input>
-        <input   class="configure" type="radio" name="color" value="0xFFFF00"id="2"> giallo </input>
+        <input class="configure" type="radio" name="color" value="0xb5FF4b" id="2"> Verde </input>
+        <input class="configure" type="radio" name="color" value="0xff0000" id="2"> Rosso </input>
+        <input class="configure" type="radio" name="color" value="0x000000" id="2"> Nero </input>
+        <input class="configure" type="radio" name="color" value="0xFFFF00" id="2"> Giallo </input>
+        <input class="configure" type="radio" name="color" value="0x8B4513" id="2"> Marrone </input>
+        <input class="configure" type="radio" name="color" value="0xffffff" id="2"> Bianco </input>
      </form>
     </div>
+    
     <div id="cerchi">
-        <h2> Colore cerchioni</h2>
+        <h2>🛞 Colore Cerchioni (Vành)</h2>
     <form class="conf">
-  
-        <input   class="configure" type="radio" name="color" value="0x000000" id="3"> nero </input>
-        <input   class="configure" type="radio" name="color" value="0xFFFFFF"id="3"> bianco </input>
+        <input class="configure" type="radio" name="color" value="0x000000" id="3"> Nero </input>
+        <input class="configure" type="radio" name="color" value="0xFFFFFF" id="3"> Bianco </input>
+        <input class="configure" type="radio" name="color" value="0xc0c0c0" id="3"> Argento </input>
+        <input class="configure" type="radio" name="color" value="0xffd700" id="3"> Oro </input>
+        <input class="configure" type="radio" name="color" value="0xff0000" id="3"> Rosso </input>
+     </form>
+    </div>
+    
+    <div id="interni" style="position: absolute; top: 560px; left: 0; background: black; color: white; padding: 20px;">
+        <h2>🏠 Colore Interni (Nội thất)</h2>
+    <form class="conf">
+        <input class="configure" type="radio" name="color" value="0x0000ff" id="4"> Blu </input>
+        <input class="configure" type="radio" name="color" value="0x000000" id="4"> Nero </input>
+        <input class="configure" type="radio" name="color" value="0x8B4513" id="4"> Marrone </input>
+        <input class="configure" type="radio" name="color" value="0xff0000" id="4"> Rosso </input>
+        <input class="configure" type="radio" name="color" value="0xffffff" id="4"> Bianco </input>
+     </form>
+    </div>
+    
+    <div id="vetro" style="position: absolute; top: 700px; left: 0; background: black; color: white; padding: 20px;">
+        <h2>🪟 Colore Vetro (Kính)</h2>
+    <form class="conf">
+        <input class="configure" type="radio" name="color" value="0x000000" id="5"> Nero (Đen) </input>
+        <input class="configure" type="radio" name="color" value="0x001a33" id="5"> Blu Scuro </input>
+        <input class="configure" type="radio" name="color" value="0x1a1a1a" id="5"> Grigio Scuro </input>
+        <input class="configure" type="radio" name="color" value="0x4d4d4d" id="5"> Grigio Chiaro </input>
+     </form>
+    </div>
+    
+    <div id="luci" style="position: absolute; top: 840px; left: 0; background: black; color: white; padding: 20px;">
+        <h2>💡 Colore Luci (Đèn)</h2>
+    <form class="conf">
+        <input class="configure" type="radio" name="color" value="0xff0000" id="6"> Rosso </input>
+        <input class="configure" type="radio" name="color" value="0xff8800" id="6"> Arancione </input>
+        <input class="configure" type="radio" name="color" value="0xFFFF00" id="6"> Giallo </input>
+        <input class="configure" type="radio" name="color" value="0xffffff" id="6"> Bianco </input>
      </form>
     </div>
 </body>

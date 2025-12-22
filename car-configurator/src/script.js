@@ -3,7 +3,19 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "dat.gui";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { loadCar, parti } from "./loadCar";
+import {
+  loadCar,
+  parti,
+  carGroup,
+  autoRotate,
+  toggleDoors,
+  toggleExplode,
+  toggleAutoRotate,
+  setCameraView,
+  saveConfiguration,
+  loadConfiguration,
+  takeScreenshot
+} from "./loadCar";
 import { TextureLoader } from "three";
 import { lightCreator } from "./lightCreator";
 
@@ -119,10 +131,14 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 const clock = new THREE.Clock();
 
 loadCar(scene);
+
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
-  // Update objects
+  // ========== AUTO ROTATE ==========
+  if (autoRotate && carGroup) {
+    carGroup.rotation.y += 0.01;
+  }
 
   // Update Orbital Controls
   controls.update();
@@ -140,6 +156,45 @@ $(".configure").on("touchstart mousedown", function (e) {
   var attribute = $(this).attr("value");
   console.log(attribute);
   parti[parseInt($(this).attr("id"))].color = new THREE.Color(parseInt(attribute));
-  e.preventDefault(); //prevents further events from being dispatched
+  e.preventDefault();
 });
 
+// ========== EVENT LISTENERS CHO TÍNH NĂNG MỚI ==========
+
+// Toggle Doors
+window.toggleDoors = function () {
+  toggleDoors();
+};
+
+// Toggle Explode
+window.toggleExplode = function () {
+  toggleExplode();
+};
+
+// Toggle Auto Rotate
+window.toggleAutoRotate = function () {
+  const isRotating = toggleAutoRotate();
+  const btn = document.getElementById("autoRotateBtn");
+  if (btn) {
+    btn.textContent = isRotating ? "⏸️ Dừng Xoay" : "🔄 Xoay Tự Động";
+  }
+};
+
+// Camera Views
+window.setCameraView = function (preset) {
+  setCameraView(camera, preset);
+};
+
+// Save/Load Config
+window.saveConfiguration = function () {
+  saveConfiguration();
+};
+
+window.loadConfiguration = function () {
+  loadConfiguration();
+};
+
+// Screenshot
+window.takeScreenshot = function () {
+  takeScreenshot(renderer, scene, camera);
+};
