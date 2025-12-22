@@ -1,0 +1,30 @@
+{
+	"collectionName": "components_shared_heroes",
+	"info": {
+		"displayName": "Hero",
+		"icon": "layout",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"title": {
+			"type": "string",
+			"required": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"cover": {
+			"type": "media",
+			"multiple": false,
+			"required": false,
+			"allowedTypes": ["images", "files", "videos"]
+		},
+		"ctaText": {
+			"type": "string"
+		},
+		"ctaLink": {
+			"type": "string"
+		}
+	}
+}

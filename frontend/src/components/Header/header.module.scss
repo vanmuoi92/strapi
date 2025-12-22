@@ -1,0 +1,59 @@
+.header {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	padding: 0;
+
+	.headerContainer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 24px;
+		height: 100%;
+	}
+
+	.logo {
+		flex-shrink: 0;
+
+		h1 {
+			margin: 0;
+			font-size: 24px;
+			font-weight: bold;
+			color: white;
+
+			a {
+				color: white;
+				text-decoration: none;
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+		}
+	}
+
+	.menu {
+		flex: 1;
+		border: none;
+		background: transparent;
+		margin-left: 40px;
+
+		:global(.ant-menu-item) {
+			color: rgba(255, 255, 255, 0.85);
+
+			&:hover {
+				color: white;
+			}
+
+			a {
+				color: inherit;
+			}
+		}
+
+		:global(.ant-menu-item-selected) {
+			color: white;
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"collectionName": "components_shared_cards",
+	"info": {
+		"displayName": "Card",
+		"icon": "landscape",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"description": {
+			"type": "text"
+		},
+		"image": {
+			"type": "media",
+			"multiple": false,
+			"allowedTypes": ["images"]
+		},
+		"link": {
+			"type": "string"
+		}
+	}
+}

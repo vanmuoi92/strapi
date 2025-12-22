@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_global_share_menu_items",
+  "info": {
+    "displayName": "Menu item"
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
