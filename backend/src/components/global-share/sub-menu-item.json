@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_global_share_sub_menu_items",
+  "info": {
+    "displayName": "Sub Menu Item"
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "Link": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

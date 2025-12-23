@@ -4,7 +4,21 @@ import styles from "./footer.module.scss";
 
 const { Footer: AntFooter } = Layout;
 
-const Footer: React.FC = () => {
+interface MenuItem {
+	id: number;
+	Label: string;
+	link: string;
+}
+
+interface FooterProps {
+	mainMenu?: MenuItem[];
+	siteName?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({
+	mainMenu = [],
+	siteName = "Nimo Electric Kart",
+}) => {
 	const year = new Date().getFullYear();
 
 	return (
@@ -13,29 +27,16 @@ const Footer: React.FC = () => {
 				<div className={styles.footerContent}>
 					<div className={styles.footerSection}>
 						<h3>Về chúng tôi</h3>
-						<p>
-							Nimo Electric Kart - Nền tảng quản lý xe điện hiện
-							đại
-						</p>
+						<p>{siteName} - Nền tảng quản lý xe điện hiện đại</p>
 					</div>
 					<div className={styles.footerSection}>
 						<h3>Liên kết nhanh</h3>
 						<ul>
-							<li>
-								<Link to="/">Trang chủ</Link>
-							</li>
-							<li>
-								<Link to="/articles">Bài viết</Link>
-							</li>
-							<li>
-								<Link to="/pages">Trang</Link>
-							</li>
-							<li>
-								<Link to="/about">Về chúng tôi</Link>
-							</li>
-							<li>
-								<Link to="/contact">Liên hệ</Link>
-							</li>
+							{mainMenu.map((item) => (
+								<li key={item.id}>
+									<Link to={item.link}>{item.Label}</Link>
+								</li>
+							))}
 						</ul>
 					</div>
 					<div className={styles.footerSection}>
@@ -46,8 +47,7 @@ const Footer: React.FC = () => {
 				</div>
 				<div className={styles.footerBottom}>
 					<p>
-						Copyright © {year} Nimo Electric Kart. All rights
-						reserved.
+						Copyright © {year} {siteName}. All rights reserved.
 					</p>
 				</div>
 			</div>

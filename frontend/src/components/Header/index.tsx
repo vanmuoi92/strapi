@@ -4,33 +4,48 @@ import styles from "./header.module.scss";
 
 const { Header: AntHeader } = Layout;
 
-interface HeaderProps {
-	siteName?: string;
+interface SubMenuItem {
+	id: number;
+	Label: string;
+	Link: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ siteName = "Nimo Electric Kart" }) => {
-	const menuItems = [
-		{
-			key: "home",
-			label: <Link to="/">Trang chủ</Link>,
-		},
-		{
-			key: "articles",
-			label: <Link to="/articles">Bài viết</Link>,
-		},
-		{
-			key: "pages",
-			label: <Link to="/pages">Trang</Link>,
-		},
-		{
-			key: "about",
-			label: <Link to="/about">Về chúng tôi</Link>,
-		},
-		{
-			key: "contact",
-			label: <Link to="/contact">Liên hệ</Link>,
-		},
-	];
+interface MenuItem {
+	id: number;
+	Label: string;
+	link: string;
+	subMenuItem: SubMenuItem[];
+}
+
+interface HeaderProps {
+	siteName?: string;
+	mainMenu?: MenuItem[];
+}
+
+const Header: React.FC<HeaderProps> = ({
+	siteName = "Nimo Electric Kart",
+	mainMenu = [],
+}) => {
+	// Convert backend menu data to Ant Design Menu format
+	const menuItems = mainMenu.map((item) => {
+		const baseItem = {
+			key: item.id.toString(),
+			label: <Link to={item.link}>{item.Label}</Link>,
+		};
+
+		// Add submenu if exists
+		if (item.subMenuItem && item.subMenuItem.length > 0) {
+			return {
+				...baseItem,
+				children: item.subMenuItem.map((subItem) => ({
+					key: `${item.id}-${subItem.id}`,
+					label: <Link to={subItem.Link}>{subItem.Label}</Link>,
+				})),
+			};
+		}
+
+		return baseItem;
+	});
 
 	return (
 		<AntHeader className={styles.header}>
@@ -43,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ siteName = "Nimo Electric Kart" }) => {
 				<Menu
 					theme="dark"
 					mode="horizontal"
-					defaultSelectedKeys={["home"]}
+					defaultSelectedKeys={["1"]}
 					items={menuItems}
 					className={styles.menu}
 				/>

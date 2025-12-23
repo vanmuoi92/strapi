@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:1337/api";
-const API_TOKEN =
-	"03397a7722ccc5854f03b2a70439edf2341a856e98df0cedb50aa25fcd776477169876bf3481997ed35939ee4d703099a8c33a22acd4a5777a49da5f201c7fa696d5b3a43d1e5e0a769e4d057b87e564e704b651a607021ac212c775dece165b5cfe1b07aa1eac5b6075603f2d9a267e8a62e14e54ac245a8290f5e24edf0def";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_TOKEN = import.meta.env.VITE_API_TOKEN;
 
 export const apiClient = axios.create({
 	baseURL: API_BASE_URL,
@@ -102,10 +101,8 @@ export const fetchPages = async () => {
 
 export const fetchPageBySlug = async (slug: string) => {
 	try {
-		const response = await apiClient.get(
-			`/pages?filters[slug][$eq]=${slug}&populate=*`,
-		);
-		return response.data.data?.[0] || null;
+		const response = await apiClient.get(`/pages/slug/${slug}`);
+		return response.data.data || null;
 	} catch (error) {
 		console.error("Error fetching page:", error);
 		return null;

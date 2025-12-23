@@ -10,6 +10,11 @@
     },
     "link": {
       "type": "string"
+    },
+    "subMenuItem": {
+      "type": "component",
+      "component": "global-share.sub-menu-item",
+      "repeatable": true
     }
   },
   "config": {}

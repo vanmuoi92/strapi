@@ -74,6 +74,19 @@ export interface Contact {
 	publishedAt?: string;
 }
 
+export interface SubMenuItem {
+	id: number;
+	Label: string;
+	Link: string;
+}
+
+export interface MenuItem {
+	id: number;
+	Label: string;
+	link: string;
+	subMenuItem: SubMenuItem[];
+}
+
 export interface Global {
 	id: number;
 	documentId: string;
@@ -81,6 +94,7 @@ export interface Global {
 	siteDescription?: string;
 	favicon?: any;
 	defaultSeo?: any;
+	mainMenu?: MenuItem[];
 	createdAt: string;
 	updatedAt: string;
 }

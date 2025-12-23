@@ -27,7 +27,7 @@ const Pages: React.FC = () => {
 				{pages.map((page) => (
 					<Col key={page.id} xs={24} sm={12} md={8}>
 						<Link
-							to={`/pages/${page.slug}`}
+							to={`/page/${page.slug}`}
 							style={{ textDecoration: "none" }}>
 							<Card
 								hoverable

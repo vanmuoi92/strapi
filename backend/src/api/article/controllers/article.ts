@@ -6,9 +6,17 @@ import { factories } from "@strapi/strapi";
 
 export default factories.createCoreController("api::article.article", {
 	async find(ctx) {
-		ctx.query.populate = "cover,author";
+		ctx.query.fields = ["title", "description", "slug"];
+
+		ctx.query.populate = {
+			cover: {
+				fields: ["url", "alternativeText", "width", "height"],
+			},
+			author: true,
+		};
 		return super.find(ctx);
 	},
+
 	async findOne(ctx) {
 		ctx.query.populate = {
 			blocks: {
@@ -80,6 +88,12 @@ export default factories.createCoreController("api::article.article", {
 								},
 							},
 						},
+					},
+					"shared.quote": {
+						populate: "*",
+					},
+					"shared.rich-text": {
+						populate: "*",
 					},
 				},
 			},

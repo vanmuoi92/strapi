@@ -8,6 +8,18 @@ export interface GlobalShareMenuItem extends Struct.ComponentSchema {
   attributes: {
     Label: Schema.Attribute.String;
     link: Schema.Attribute.String;
+    subMenuItem: Schema.Attribute.Component<'global-share.sub-menu-item', true>;
+  };
+}
+
+export interface GlobalShareSubMenuItem extends Struct.ComponentSchema {
+  collectionName: 'components_global_share_sub_menu_items';
+  info: {
+    displayName: 'Sub Menu Item';
+  };
+  attributes: {
+    Label: Schema.Attribute.String;
+    Link: Schema.Attribute.String;
   };
 }
 
@@ -150,6 +162,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'global-share.menu-item': GlobalShareMenuItem;
+      'global-share.sub-menu-item': GlobalShareSubMenuItem;
       'shared.card': SharedCard;
       'shared.feature-item': SharedFeatureItem;
       'shared.features': SharedFeatures;

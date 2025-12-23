@@ -20,11 +20,17 @@ const AppLayout: React.FC<LayoutProps> = ({ children }) => {
 				display: "flex",
 				flexDirection: "column",
 			}}>
-			<Header siteName={globalData?.siteName} />
+			<Header
+				siteName={globalData?.siteName}
+				mainMenu={globalData?.mainMenu || []}
+			/>
 			<Content className={styles.content}>
 				<div className={styles.contentWrapper}>{children}</div>
 			</Content>
-			<Footer />
+			<Footer
+				siteName={globalData?.siteName}
+				mainMenu={globalData?.mainMenu || []}
+			/>
 		</Layout>
 	);
 };

@@ -2,6 +2,25 @@
  *  global controller
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from "@strapi/strapi";
 
-export default factories.createCoreController('api::global.global');
+export default factories.createCoreController("api::global.global", {
+	async find(ctx) {
+		// Populate all fields including nested components
+		ctx.query.populate = {
+			favicon: true,
+			defaultSeo: {
+				populate: "*",
+			},
+			mainMenu: {
+				populate: {
+					subMenuItem: {
+						populate: "*",
+					},
+				},
+			},
+		};
+
+		return super.find(ctx);
+	},
+});
