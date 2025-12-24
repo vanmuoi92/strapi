@@ -1,8 +1,8 @@
 {
-	"collectionName": "components_shared_grids",
+	"collectionName": "components_shared_features_lists",
 	"info": {
-		"displayName": "Grid",
-		"icon": "grid",
+		"displayName": "Features",
+		"icon": "bullet-list",
 		"description": ""
 	},
 	"options": {},
@@ -15,8 +15,8 @@
 		},
 		"items": {
 			"type": "component",
-			"repeatable": true,
-			"component": "shared.card"
+			"component": "page-builder.feature-item",
+			"repeatable": true
 		}
 	}
 }

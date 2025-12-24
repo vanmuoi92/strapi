@@ -1,33 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-	fetchGlobal,
-	fetchAbout,
-	fetchContact,
-	fetchPages,
-	fetchPageBySlug,
-} from "@/services/api";
-import type { Global, About, Contact, Page } from "@/types/index";
+import { fetchGlobal, fetchPages, fetchPageBySlug } from "@/services/api";
+import type { Global, Page } from "@/types/index";
 
 export const useGlobal = () => {
 	return useQuery<Global>({
 		queryKey: ["global"],
 		queryFn: fetchGlobal,
-		staleTime: 24 * 60 * 60 * 1000,
-	});
-};
-
-export const useAbout = () => {
-	return useQuery<About>({
-		queryKey: ["about"],
-		queryFn: fetchAbout,
-		staleTime: 24 * 60 * 60 * 1000,
-	});
-};
-
-export const useContact = () => {
-	return useQuery<Contact>({
-		queryKey: ["contact"],
-		queryFn: fetchContact,
 		staleTime: 24 * 60 * 60 * 1000,
 	});
 };

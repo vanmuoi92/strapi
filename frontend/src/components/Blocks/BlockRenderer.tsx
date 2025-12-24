@@ -18,19 +18,19 @@ interface BlockRendererProps {
 
 const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 	switch (block.__component) {
-		case "shared.rich-text":
+		case "page-builder.rich-text":
 			return <RichTextBlock body={block.body} />;
-		case "shared.quote":
+		case "page-builder.quote":
 			return <QuoteBlock body={block.body} title={block.title} />;
-		case "shared.media":
+		case "page-builder.media":
 			return <MediaBlock file={block.file} />;
-		case "shared.slider":
+		case "page-builder.slider":
 			return <SliderBlock files={block.files} />;
-		case "shared.hero":
+		case "page-builder.hero":
 			return <Hero {...block} />;
-		case "shared.features":
+		case "page-builder.features":
 			return <Features {...block} />;
-		case "shared.grid":
+		case "page-builder.grid":
 			return <Grid {...block} />;
 		default:
 			return null;

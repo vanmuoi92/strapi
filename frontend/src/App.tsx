@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import AppLayout from "@/components/Layout";
-import Home from "@/pages/Home";
 import Articles from "@/pages/Articles";
 import ArticleDetail from "@/pages/ArticleDetail";
 import PageDetail from "@/pages/PageDetail";
@@ -14,13 +13,13 @@ function App() {
 			<BrowserRouter>
 				<AppLayout>
 					<Routes>
-						<Route path="/" element={<Home />} />
+						<Route path="/" element={<PageDetail slug="home" />} />
 						<Route path="/articles" element={<Articles />} />
 						<Route
-							path="/articles/:id"
+							path="/articles/:slug"
 							element={<ArticleDetail />}
 						/>
-						<Route path="/page/:slug" element={<PageDetail />} />
+						<Route path="/:slug" element={<PageDetail />} />
 					</Routes>
 				</AppLayout>
 			</BrowserRouter>

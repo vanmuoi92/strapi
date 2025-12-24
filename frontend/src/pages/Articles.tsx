@@ -56,7 +56,7 @@ const Articles: React.FC = () => {
 										article.publishedAt,
 									).toLocaleDateString("vi-VN")}
 								</p>
-								<Link to={`/articles/${article.documentId}`}>
+								<Link to={`/articles/${article.slug}`}>
 									<Button type="primary" block>
 										Đọc thêm
 									</Button>

@@ -26,7 +26,7 @@ export default factories.createCoreController("api::page.page", {
 			populate: {
 				blocks: {
 					on: {
-						"shared.media": {
+						"page-builder.media": {
 							populate: {
 								file: {
 									fields: [
@@ -38,7 +38,7 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"shared.slider": {
+						"page-builder.slider": {
 							populate: {
 								files: {
 									fields: [
@@ -50,7 +50,7 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"shared.hero": {
+						"page-builder.hero": {
 							populate: {
 								cover: {
 									fields: [
@@ -62,7 +62,7 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"shared.features": {
+						"page-builder.features": {
 							populate: {
 								items: {
 									populate: {
@@ -78,7 +78,7 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"shared.grid": {
+						"page-builder.grid": {
 							populate: {
 								items: {
 									populate: {
@@ -94,10 +94,10 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"shared.quote": {
+						"page-builder.quote": {
 							populate: "*",
 						},
-						"shared.rich-text": {
+						"page-builder.rich-text": {
 							populate: "*",
 						},
 					},
@@ -113,14 +113,15 @@ export default factories.createCoreController("api::page.page", {
 			return ctx.notFound("Page not found");
 		}
 
-		return { data: pages[0] };
+		const sanitizedEntity = await this.sanitizeOutput(pages[0], ctx);
+		return this.transformResponse(sanitizedEntity);
 	},
 
 	async findOne(ctx) {
 		ctx.query.populate = {
 			blocks: {
 				on: {
-					"shared.media": {
+					"page-builder.media": {
 						populate: {
 							file: {
 								fields: [
@@ -132,7 +133,7 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"shared.slider": {
+					"page-builder.slider": {
 						populate: {
 							files: {
 								fields: [
@@ -144,7 +145,7 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"shared.hero": {
+					"page-builder.hero": {
 						populate: {
 							cover: {
 								fields: [
@@ -156,7 +157,7 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"shared.features": {
+					"page-builder.features": {
 						populate: {
 							items: {
 								populate: {
@@ -172,7 +173,7 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"shared.grid": {
+					"page-builder.grid": {
 						populate: {
 							items: {
 								populate: {
@@ -188,10 +189,10 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"shared.quote": {
+					"page-builder.quote": {
 						populate: "*",
 					},
-					"shared.rich-text": {
+					"page-builder.rich-text": {
 						populate: "*",
 					},
 				},

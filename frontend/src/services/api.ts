@@ -39,6 +39,16 @@ export const fetchArticleById = async (id: string) => {
 	}
 };
 
+export const fetchArticleBySlug = async (slug: string) => {
+	try {
+		const response = await apiClient.get(`/articles/slug/${slug}`);
+		return response.data.data || null;
+	} catch (error) {
+		console.error("Error fetching article:", error);
+		return null;
+	}
+};
+
 export const fetchAuthors = async () => {
 	try {
 		const response = await apiClient.get("/authors?populate=*");
@@ -56,26 +66,6 @@ export const fetchCategories = async () => {
 	} catch (error) {
 		console.error("Error fetching categories:", error);
 		return [];
-	}
-};
-
-export const fetchAbout = async () => {
-	try {
-		const response = await apiClient.get("/about");
-		return response.data.data || null;
-	} catch (error) {
-		console.error("Error fetching about:", error);
-		return null;
-	}
-};
-
-export const fetchContact = async () => {
-	try {
-		const response = await apiClient.get("/contact?populate=*");
-		return response.data.data || null;
-	} catch (error) {
-		console.error("Error fetching contact:", error);
-		return null;
 	}
 };
 

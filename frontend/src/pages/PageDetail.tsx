@@ -4,8 +4,13 @@ import { usePageBySlug } from "@/hooks/useGlobal";
 import { BlockRenderer } from "@/components/Blocks";
 import styles from "./pages.module.scss";
 
-const PageDetail: React.FC = () => {
-	const { slug } = useParams<{ slug: string }>();
+interface PageDetailProps {
+	slug?: string;
+}
+
+const PageDetail: React.FC<PageDetailProps> = ({ slug: propSlug }) => {
+	const { slug: paramSlug } = useParams<{ slug: string }>();
+	const slug = propSlug || paramSlug;
 	const { data: page, isLoading } = usePageBySlug(slug || "");
 
 	if (isLoading) {

@@ -1,12 +1,12 @@
 import { Spin, Empty, Breadcrumb } from "antd";
 import { BlockRenderer } from "@/components/Blocks";
 import { useParams, Link } from "react-router-dom";
-import { useArticleById } from "@/hooks/useArticles";
+import { useArticleBySlug } from "@/hooks/useArticles";
 import styles from "./pages.module.scss";
 
 const ArticleDetail: React.FC = () => {
-	const { id } = useParams<{ id: string }>();
-	const { data: article, isLoading } = useArticleById(id || "");
+	const { slug } = useParams<{ slug: string }>();
+	const { data: article, isLoading } = useArticleBySlug(slug || "");
 
 	if (isLoading) {
 		return (

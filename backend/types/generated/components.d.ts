@@ -23,7 +23,7 @@ export interface GlobalShareSubMenuItem extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedCard extends Struct.ComponentSchema {
+export interface PageBuilderCard extends Struct.ComponentSchema {
   collectionName: 'components_shared_cards';
   info: {
     description: '';
@@ -38,7 +38,18 @@ export interface SharedCard extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedFeatureItem extends Struct.ComponentSchema {
+export interface PageBuilderContactForm extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_contact_forms';
+  info: {
+    displayName: 'Contact Form';
+  };
+  attributes: {
+    Description: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageBuilderFeatureItem extends Struct.ComponentSchema {
   collectionName: 'components_shared_feature_items';
   info: {
     description: '';
@@ -52,7 +63,7 @@ export interface SharedFeatureItem extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedFeatures extends Struct.ComponentSchema {
+export interface PageBuilderFeatures extends Struct.ComponentSchema {
   collectionName: 'components_shared_features_lists';
   info: {
     description: '';
@@ -61,12 +72,12 @@ export interface SharedFeatures extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
-    items: Schema.Attribute.Component<'shared.feature-item', true>;
+    items: Schema.Attribute.Component<'page-builder.feature-item', true>;
     title: Schema.Attribute.String;
   };
 }
 
-export interface SharedGrid extends Struct.ComponentSchema {
+export interface PageBuilderGrid extends Struct.ComponentSchema {
   collectionName: 'components_shared_grids';
   info: {
     description: '';
@@ -75,12 +86,12 @@ export interface SharedGrid extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
-    items: Schema.Attribute.Component<'shared.card', true>;
+    items: Schema.Attribute.Component<'page-builder.card', true>;
     title: Schema.Attribute.String;
   };
 }
 
-export interface SharedHero extends Struct.ComponentSchema {
+export interface PageBuilderHero extends Struct.ComponentSchema {
   collectionName: 'components_shared_heroes';
   info: {
     description: '';
@@ -96,7 +107,7 @@ export interface SharedHero extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedMedia extends Struct.ComponentSchema {
+export interface PageBuilderMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
     displayName: 'Media';
@@ -107,7 +118,7 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedQuote extends Struct.ComponentSchema {
+export interface PageBuilderQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
     displayName: 'Quote';
@@ -119,7 +130,7 @@ export interface SharedQuote extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedRichText extends Struct.ComponentSchema {
+export interface PageBuilderRichText extends Struct.ComponentSchema {
   collectionName: 'components_shared_rich_texts';
   info: {
     description: '';
@@ -128,6 +139,18 @@ export interface SharedRichText extends Struct.ComponentSchema {
   };
   attributes: {
     body: Schema.Attribute.RichText;
+  };
+}
+
+export interface PageBuilderSlider extends Struct.ComponentSchema {
+  collectionName: 'components_shared_sliders';
+  info: {
+    description: '';
+    displayName: 'Slider';
+    icon: 'address-book';
+  };
+  attributes: {
+    files: Schema.Attribute.Media<'images', true>;
   };
 }
 
@@ -146,33 +169,22 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
-  info: {
-    description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
-  };
-  attributes: {
-    files: Schema.Attribute.Media<'images', true>;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'global-share.menu-item': GlobalShareMenuItem;
       'global-share.sub-menu-item': GlobalShareSubMenuItem;
-      'shared.card': SharedCard;
-      'shared.feature-item': SharedFeatureItem;
-      'shared.features': SharedFeatures;
-      'shared.grid': SharedGrid;
-      'shared.hero': SharedHero;
-      'shared.media': SharedMedia;
-      'shared.quote': SharedQuote;
-      'shared.rich-text': SharedRichText;
+      'page-builder.card': PageBuilderCard;
+      'page-builder.contact-form': PageBuilderContactForm;
+      'page-builder.feature-item': PageBuilderFeatureItem;
+      'page-builder.features': PageBuilderFeatures;
+      'page-builder.grid': PageBuilderGrid;
+      'page-builder.hero': PageBuilderHero;
+      'page-builder.media': PageBuilderMedia;
+      'page-builder.quote': PageBuilderQuote;
+      'page-builder.rich-text': PageBuilderRichText;
+      'page-builder.slider': PageBuilderSlider;
       'shared.seo': SharedSeo;
-      'shared.slider': SharedSlider;
     }
   }
 }

@@ -53,27 +53,6 @@ export interface Block {
 	[key: string]: any;
 }
 
-export interface About {
-	id: number;
-	documentId: string;
-	title: string;
-	blocks?: Block[];
-	createdAt: string;
-	updatedAt: string;
-	publishedAt?: string;
-}
-
-export interface Contact {
-	id: number;
-	documentId: string;
-	Title?: string;
-	description?: any;
-	Banner?: any;
-	createdAt: string;
-	updatedAt: string;
-	publishedAt?: string;
-}
-
 export interface SubMenuItem {
 	id: number;
 	Label: string;

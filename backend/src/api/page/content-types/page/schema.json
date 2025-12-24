@@ -37,13 +37,16 @@
 		"blocks": {
 			"type": "dynamiczone",
 			"components": [
-				"shared.media",
-				"shared.quote",
-				"shared.rich-text",
-				"shared.slider",
-				"shared.hero",
-				"shared.features",
-				"shared.grid"
+				"page-builder.slider",
+				"page-builder.rich-text",
+				"page-builder.quote",
+				"page-builder.media",
+				"page-builder.hero",
+				"page-builder.grid",
+				"page-builder.features",
+				"page-builder.feature-item",
+				"page-builder.contact-form",
+				"page-builder.card"
 			]
 		}
 	}
