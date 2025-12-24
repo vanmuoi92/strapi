@@ -1,10 +1,10 @@
 import RichTextBlock from "./RichTextBlock";
-import QuoteBlock from "./QuoteBlock";
 import MediaBlock from "./MediaBlock";
-import SliderBlock from "./SliderBlock";
 import Hero from "./Hero";
-import Features from "./Features";
 import Grid from "./Grid";
+import SliderBanner from "./SliderBanner";
+import Spacing from "./Spacing";
+import ContactForm from "./ContactForm";
 
 interface Block {
 	__component: string;
@@ -20,18 +20,44 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 	switch (block.__component) {
 		case "page-builder.rich-text":
 			return <RichTextBlock body={block.body} />;
-		case "page-builder.quote":
-			return <QuoteBlock body={block.body} title={block.title} />;
 		case "page-builder.media":
 			return <MediaBlock file={block.file} />;
-		case "page-builder.slider":
-			return <SliderBlock files={block.files} />;
 		case "page-builder.hero":
-			return <Hero {...block} />;
-		case "page-builder.features":
-			return <Features {...block} />;
+			return (
+				<Hero
+					title={block.title}
+					description={block.description}
+					ctaText={block.ctaText}
+					ctaLink={block.ctaLink}
+					cover={block.cover}
+				/>
+			);
 		case "page-builder.grid":
-			return <Grid {...block} />;
+			return (
+				<Grid
+					title={block.title}
+					description={block.description}
+					items={block.items}
+				/>
+			);
+		case "page-builder.slider-banner":
+			return <SliderBanner slides={block.slides} />;
+		case "page-builder.spacing":
+			return (
+				<Spacing
+					spacingPC={block.spacingPC}
+					spacingTablet={block.spacingTablet}
+					spacingMobile={block.spacingMobile}
+					backgroundColor={block.backgroundColor}
+				/>
+			);
+		case "page-builder.contact-form":
+			return (
+				<ContactForm
+					Title={block.Title}
+					Description={block.Description}
+				/>
+			);
 		default:
 			return null;
 	}

@@ -72,6 +72,12 @@ export interface Global {
 	siteName: string;
 	siteDescription?: string;
 	favicon?: any;
+	Logo?: {
+		url: string;
+		alternativeText?: string;
+		width?: number;
+		height?: number;
+	};
 	defaultSeo?: any;
 	mainMenu?: MenuItem[];
 	createdAt: string;

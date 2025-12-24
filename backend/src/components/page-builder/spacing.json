@@ -1,0 +1,27 @@
+{
+	"collectionName": "components_page_builder_spacings",
+	"info": {
+		"displayName": "Spacing",
+		"icon": "vial",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"spacingPC": {
+			"type": "string",
+			"default": "120px"
+		},
+		"spacingTablet": {
+			"type": "string",
+			"default": "100px"
+		},
+		"spacingMobile": {
+			"type": "string",
+			"default": "80px"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#fff"
+		}
+	}
+}

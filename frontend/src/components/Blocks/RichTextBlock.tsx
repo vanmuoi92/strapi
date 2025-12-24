@@ -1,32 +1,27 @@
+import React, { useMemo } from "react";
+import { marked } from "marked";
+
 interface RichTextBlockProps {
 	body: string;
 }
 
 const RichTextBlock: React.FC<RichTextBlockProps> = ({ body }) => {
-	const markdownToHtml = (markdown: string) => {
-		let html = markdown
-			.replace(/^### (.*?)$/gm, "<h3>$1</h3>")
-			.replace(/^## (.*?)$/gm, "<h2>$1</h2>")
-			.replace(/^# (.*?)$/gm, "<h1>$1</h1>")
-			.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-			.replace(/\*(.*?)\*/g, "<em>$1</em>")
-			.replace(/\n\n/g, "</p><p>")
-			.replace(/^(.+)$/gm, (match) => {
-				if (match.startsWith("<")) return match;
-				return match;
-			});
-		if (!html.startsWith("<")) html = `<p>${html}</p>`;
-		if (!html.endsWith("</p>")) html = `${html}</p>`;
-		return html;
-	};
+	// Use useMemo to avoid re-parsing on every render if body hasn't changed
+	const htmlContent = useMemo(() => {
+		if (!body) return "";
+		// Use marked.parseSync for synchronous rendering inside component
+		return marked.parse(body);
+	}, [body]);
 
 	return (
-		<div
-			style={{ marginBottom: 24 }}
-			dangerouslySetInnerHTML={{
-				__html: markdownToHtml(body),
-			}}
-		/>
+		<div className="container">
+			<div
+				className="rich-text-content"
+				dangerouslySetInnerHTML={{
+					__html: htmlContent,
+				}}
+			/>
+		</div>
 	);
 };
 

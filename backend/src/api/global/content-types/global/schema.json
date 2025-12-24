@@ -26,6 +26,16 @@
         "videos"
       ]
     },
+    "Logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
     "siteDescription": {
       "type": "text",
       "required": true

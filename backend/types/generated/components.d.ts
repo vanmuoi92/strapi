@@ -49,34 +49,6 @@ export interface PageBuilderContactForm extends Struct.ComponentSchema {
   };
 }
 
-export interface PageBuilderFeatureItem extends Struct.ComponentSchema {
-  collectionName: 'components_shared_feature_items';
-  info: {
-    description: '';
-    displayName: 'FeatureItem';
-    icon: 'star';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    icon: Schema.Attribute.Media<'images'>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface PageBuilderFeatures extends Struct.ComponentSchema {
-  collectionName: 'components_shared_features_lists';
-  info: {
-    description: '';
-    displayName: 'Features';
-    icon: 'bullet-list';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    items: Schema.Attribute.Component<'page-builder.feature-item', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface PageBuilderGrid extends Struct.ComponentSchema {
   collectionName: 'components_shared_grids';
   info: {
@@ -118,18 +90,6 @@ export interface PageBuilderMedia extends Struct.ComponentSchema {
   };
 }
 
-export interface PageBuilderQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    body: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface PageBuilderRichText extends Struct.ComponentSchema {
   collectionName: 'components_shared_rich_texts';
   info: {
@@ -142,15 +102,57 @@ export interface PageBuilderRichText extends Struct.ComponentSchema {
   };
 }
 
-export interface PageBuilderSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
+export interface PageBuilderSliderBanner extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_slider_banners';
   info: {
     description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
+    displayName: 'Slider Banner';
+    icon: 'images';
   };
   attributes: {
-    files: Schema.Attribute.Media<'images', true>;
+    slides: Schema.Attribute.Component<
+      'page-builder.slider-banner-item',
+      true
+    > &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+  };
+}
+
+export interface PageBuilderSliderBannerItem extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_slider_banner_items';
+  info: {
+    description: '';
+    displayName: 'SliderBannerItem';
+    icon: 'picture';
+  };
+  attributes: {
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface PageBuilderSpacing extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_spacings';
+  info: {
+    description: '';
+    displayName: 'Spacing';
+    icon: 'vial';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#fff'>;
+    spacingMobile: Schema.Attribute.String & Schema.Attribute.DefaultTo<'80px'>;
+    spacingPC: Schema.Attribute.String & Schema.Attribute.DefaultTo<'120px'>;
+    spacingTablet: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'100px'>;
   };
 }
 
@@ -176,14 +178,13 @@ declare module '@strapi/strapi' {
       'global-share.sub-menu-item': GlobalShareSubMenuItem;
       'page-builder.card': PageBuilderCard;
       'page-builder.contact-form': PageBuilderContactForm;
-      'page-builder.feature-item': PageBuilderFeatureItem;
-      'page-builder.features': PageBuilderFeatures;
       'page-builder.grid': PageBuilderGrid;
       'page-builder.hero': PageBuilderHero;
       'page-builder.media': PageBuilderMedia;
-      'page-builder.quote': PageBuilderQuote;
       'page-builder.rich-text': PageBuilderRichText;
-      'page-builder.slider': PageBuilderSlider;
+      'page-builder.slider-banner': PageBuilderSliderBanner;
+      'page-builder.slider-banner-item': PageBuilderSliderBannerItem;
+      'page-builder.spacing': PageBuilderSpacing;
       'shared.seo': SharedSeo;
     }
   }

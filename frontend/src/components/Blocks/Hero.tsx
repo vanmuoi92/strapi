@@ -31,8 +31,6 @@ const Hero: React.FC<HeroProps> = ({
 				alignItems: "center",
 				justifyContent: "center",
 				color: "#fff",
-				marginBottom: "40px",
-				borderRadius: "8px",
 				overflow: "hidden",
 			}}>
 			{cover && (

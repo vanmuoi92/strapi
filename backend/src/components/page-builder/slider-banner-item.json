@@ -1,0 +1,29 @@
+{
+	"collectionName": "components_page_builder_slider_banner_items",
+	"info": {
+		"displayName": "SliderBannerItem",
+		"icon": "picture",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"image": {
+			"type": "media",
+			"multiple": false,
+			"required": true,
+			"allowedTypes": ["images"]
+		},
+		"title": {
+			"type": "string"
+		},
+		"description": {
+			"type": "text"
+		},
+		"ctaText": {
+			"type": "string"
+		},
+		"ctaLink": {
+			"type": "string"
+		}
+	}
+}

@@ -26,21 +26,28 @@ export default factories.createCoreController("api::article.article", {
 			populate: {
 				blocks: {
 					on: {
-						"page-builder.media": {
+						"page-builder.spacing": {
+							populate: "*",
+						},
+						"page-builder.slider-banner": {
 							populate: {
-								file: {
-									fields: [
-										"url",
-										"alternativeText",
-										"width",
-										"height",
-									],
+								slides: {
+									populate: {
+										image: {
+											fields: [
+												"url",
+												"alternativeText",
+												"width",
+												"height",
+											],
+										},
+									},
 								},
 							},
 						},
-						"page-builder.slider": {
+						"page-builder.media": {
 							populate: {
-								files: {
+								file: {
 									fields: [
 										"url",
 										"alternativeText",
@@ -62,22 +69,6 @@ export default factories.createCoreController("api::article.article", {
 								},
 							},
 						},
-						"page-builder.features": {
-							populate: {
-								items: {
-									populate: {
-										icon: {
-											fields: [
-												"url",
-												"alternativeText",
-												"width",
-												"height",
-											],
-										},
-									},
-								},
-							},
-						},
 						"page-builder.grid": {
 							populate: {
 								items: {
@@ -94,10 +85,10 @@ export default factories.createCoreController("api::article.article", {
 								},
 							},
 						},
-						"page-builder.quote": {
+						"page-builder.rich-text": {
 							populate: "*",
 						},
-						"page-builder.rich-text": {
+						"page-builder.contact-form": {
 							populate: "*",
 						},
 					},
@@ -108,6 +99,11 @@ export default factories.createCoreController("api::article.article", {
 				author: true,
 			},
 		});
+
+		console.log(
+			"DEBUG: Article findBySlug result:",
+			JSON.stringify(result?.[0]?.blocks, null, 2),
+		);
 
 		if (!result || result.length === 0) {
 			return ctx.notFound("DEBUG: Article not found for slug: " + slug);
@@ -121,21 +117,28 @@ export default factories.createCoreController("api::article.article", {
 		ctx.query.populate = {
 			blocks: {
 				on: {
-					"page-builder.media": {
+					"page-builder.spacing": {
+						populate: "*",
+					},
+					"page-builder.slider-banner": {
 						populate: {
-							file: {
-								fields: [
-									"url",
-									"alternativeText",
-									"width",
-									"height",
-								],
+							slides: {
+								populate: {
+									image: {
+										fields: [
+											"url",
+											"alternativeText",
+											"width",
+											"height",
+										],
+									},
+								},
 							},
 						},
 					},
-					"page-builder.slider": {
+					"page-builder.media": {
 						populate: {
-							files: {
+							file: {
 								fields: [
 									"url",
 									"alternativeText",
@@ -157,22 +160,6 @@ export default factories.createCoreController("api::article.article", {
 							},
 						},
 					},
-					"page-builder.features": {
-						populate: {
-							items: {
-								populate: {
-									icon: {
-										fields: [
-											"url",
-											"alternativeText",
-											"width",
-											"height",
-										],
-									},
-								},
-							},
-						},
-					},
 					"page-builder.grid": {
 						populate: {
 							items: {
@@ -189,15 +176,20 @@ export default factories.createCoreController("api::article.article", {
 							},
 						},
 					},
-					"page-builder.quote": {
+					"page-builder.rich-text": {
 						populate: "*",
 					},
-					"page-builder.rich-text": {
+					"page-builder.contact-form": {
 						populate: "*",
 					},
 				},
 			},
 		};
-		return super.findOne(ctx);
+		const response = await super.findOne(ctx);
+		console.log(
+			"DEBUG: Article findOne response:",
+			JSON.stringify(response?.data?.attributes?.blocks, null, 2),
+		);
+		return response;
 	},
 });

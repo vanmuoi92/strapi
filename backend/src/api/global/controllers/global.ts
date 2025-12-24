@@ -9,6 +9,7 @@ export default factories.createCoreController("api::global.global", {
 		// Populate all fields including nested components
 		ctx.query.populate = {
 			favicon: true,
+			Logo: true,
 			defaultSeo: {
 				populate: "*",
 			},

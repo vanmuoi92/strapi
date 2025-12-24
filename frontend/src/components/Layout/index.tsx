@@ -19,9 +19,11 @@ const AppLayout: React.FC<LayoutProps> = ({ children }) => {
 				minHeight: "100vh",
 				display: "flex",
 				flexDirection: "column",
+				backgroundColor: "#fff",
 			}}>
 			<Header
 				siteName={globalData?.siteName}
+				logo={globalData?.Logo}
 				mainMenu={globalData?.mainMenu || []}
 			/>
 			<Content className={styles.content}>

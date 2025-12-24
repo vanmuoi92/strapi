@@ -1,54 +1,55 @@
 {
-	"kind": "collectionType",
-	"collectionName": "articles",
-	"info": {
-		"singularName": "article",
-		"pluralName": "articles",
-		"displayName": "Article",
-		"description": "Create your blog content"
-	},
-	"options": {
-		"draftAndPublish": true
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"title": {
-			"type": "string"
-		},
-		"description": {
-			"type": "text",
-			"maxLength": 80
-		},
-		"slug": {
-			"type": "uid",
-			"targetField": "title"
-		},
-		"cover": {
-			"type": "media",
-			"multiple": false,
-			"required": false,
-			"allowedTypes": ["images", "files", "videos"]
-		},
-		"author": {
-			"type": "relation",
-			"relation": "manyToOne",
-			"target": "api::author.author",
-			"inversedBy": "articles"
-		},
-		"blocks": {
-			"type": "dynamiczone",
-			"components": [
-				"page-builder.slider",
-				"page-builder.rich-text",
-				"page-builder.quote",
-				"page-builder.media",
-				"page-builder.hero",
-				"page-builder.grid",
-				"page-builder.features",
-				"page-builder.feature-item",
-				"page-builder.contact-form",
-				"page-builder.card"
-			]
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Create your blog content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 80
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "page-builder.spacing",
+        "page-builder.slider-banner",
+        "page-builder.rich-text",
+        "page-builder.media",
+        "page-builder.hero",
+        "page-builder.grid",
+        "page-builder.contact-form"
+      ]
+    }
+  }
 }

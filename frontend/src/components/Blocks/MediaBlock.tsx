@@ -11,7 +11,6 @@ const MediaBlock: React.FC<MediaBlockProps> = ({ file }) => {
 	return (
 		<div
 			style={{
-				marginBottom: 24,
 				textAlign: "center",
 			}}>
 			{file ? (

@@ -1,0 +1,17 @@
+{
+	"collectionName": "components_page_builder_slider_banners",
+	"info": {
+		"displayName": "Slider Banner",
+		"icon": "images",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"slides": {
+			"type": "component",
+			"component": "page-builder.slider-banner-item",
+			"repeatable": true,
+			"min": 1
+		}
+	}
+}

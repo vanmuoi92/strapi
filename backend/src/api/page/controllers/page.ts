@@ -20,27 +20,34 @@ export default factories.createCoreController("api::page.page", {
 	async findBySlug(ctx) {
 		const { slug } = ctx.params;
 
-		// Find page by slug
-		const pages = await strapi.entityService.findMany("api::page.page", {
+		// Use strapi.documents for Strapi v5
+		const result = await strapi.documents("api::page.page").findMany({
 			filters: { slug },
 			populate: {
 				blocks: {
 					on: {
-						"page-builder.media": {
+						"page-builder.spacing": {
+							populate: "*",
+						},
+						"page-builder.slider-banner": {
 							populate: {
-								file: {
-									fields: [
-										"url",
-										"alternativeText",
-										"width",
-										"height",
-									],
+								slides: {
+									populate: {
+										image: {
+											fields: [
+												"url",
+												"alternativeText",
+												"width",
+												"height",
+											],
+										},
+									},
 								},
 							},
 						},
-						"page-builder.slider": {
+						"page-builder.media": {
 							populate: {
-								files: {
+								file: {
 									fields: [
 										"url",
 										"alternativeText",
@@ -62,22 +69,6 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"page-builder.features": {
-							populate: {
-								items: {
-									populate: {
-										icon: {
-											fields: [
-												"url",
-												"alternativeText",
-												"width",
-												"height",
-											],
-										},
-									},
-								},
-							},
-						},
 						"page-builder.grid": {
 							populate: {
 								items: {
@@ -94,10 +85,10 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
-						"page-builder.quote": {
+						"page-builder.rich-text": {
 							populate: "*",
 						},
-						"page-builder.rich-text": {
+						"page-builder.contact-form": {
 							populate: "*",
 						},
 					},
@@ -109,11 +100,16 @@ export default factories.createCoreController("api::page.page", {
 			},
 		});
 
-		if (!pages || pages.length === 0) {
+		console.log(
+			"DEBUG: Page findBySlug result:",
+			JSON.stringify(result?.[0]?.blocks, null, 2),
+		);
+
+		if (!result || result.length === 0) {
 			return ctx.notFound("Page not found");
 		}
 
-		const sanitizedEntity = await this.sanitizeOutput(pages[0], ctx);
+		const sanitizedEntity = await this.sanitizeOutput(result[0], ctx);
 		return this.transformResponse(sanitizedEntity);
 	},
 
@@ -121,21 +117,28 @@ export default factories.createCoreController("api::page.page", {
 		ctx.query.populate = {
 			blocks: {
 				on: {
-					"page-builder.media": {
+					"page-builder.spacing": {
+						populate: "*",
+					},
+					"page-builder.slider-banner": {
 						populate: {
-							file: {
-								fields: [
-									"url",
-									"alternativeText",
-									"width",
-									"height",
-								],
+							slides: {
+								populate: {
+									image: {
+										fields: [
+											"url",
+											"alternativeText",
+											"width",
+											"height",
+										],
+									},
+								},
 							},
 						},
 					},
-					"page-builder.slider": {
+					"page-builder.media": {
 						populate: {
-							files: {
+							file: {
 								fields: [
 									"url",
 									"alternativeText",
@@ -157,22 +160,6 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"page-builder.features": {
-						populate: {
-							items: {
-								populate: {
-									icon: {
-										fields: [
-											"url",
-											"alternativeText",
-											"width",
-											"height",
-										],
-									},
-								},
-							},
-						},
-					},
 					"page-builder.grid": {
 						populate: {
 							items: {
@@ -189,15 +176,20 @@ export default factories.createCoreController("api::page.page", {
 							},
 						},
 					},
-					"page-builder.quote": {
+					"page-builder.rich-text": {
 						populate: "*",
 					},
-					"page-builder.rich-text": {
+					"page-builder.contact-form": {
 						populate: "*",
 					},
 				},
 			},
 		};
-		return super.findOne(ctx);
+		const response = await super.findOne(ctx);
+		console.log(
+			"DEBUG: Page findOne response:",
+			JSON.stringify(response?.data?.attributes?.blocks, null, 2),
+		);
+		return response;
 	},
 });
