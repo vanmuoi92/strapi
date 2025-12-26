@@ -21,80 +21,34 @@ const ArticleDetail: React.FC = () => {
 	}
 
 	return (
-		<div className={styles.page}>
-			<Breadcrumb // turbo
-				items={[
-					{ title: <Link to="/">Trang chủ</Link> },
-					{ title: <Link to="/articles">Bài viết</Link> },
-					{ title: article.title },
-				]}
-				style={{ marginBottom: 24 }}
-			/>
-
-			{article.cover && (
-				<img
-					src={`http://localhost:1337${article.cover.url}`}
-					alt={article.cover.alternativeText || article.title}
-					style={{
-						width: "100%",
-						maxHeight: 400,
-						objectFit: "cover",
-						borderRadius: 8,
-						marginBottom: 32,
-					}}
-				/>
-			)}
-
+		<div className={styles.page} style={{ padding: "100px 0" }}>
 			<article className={styles.article}>
-				<h1 style={{ marginBottom: 16 }}>{article.title}</h1>
-
-				<div
-					style={{
-						display: "flex",
-						gap: 16,
-						marginBottom: 24,
-						fontSize: 14,
-						color: "#666",
-					}}>
-					{article.author && <span>By {article.author.name}</span>}
-					{article.publishedAt && (
-						<span>
-							{new Date(article.publishedAt).toLocaleDateString(
-								"vi-VN",
-							)}
-						</span>
+				<div className="container" style={{ marginBottom: 100 }}>
+					<Breadcrumb
+						items={[
+							{ title: <Link to="/articles">Bài viết</Link> },
+							{ title: article.title },
+						]}
+						style={{ marginBottom: 24 }}
+					/>
+					<h1 style={{ marginBottom: 40 }}>{article.title}</h1>
+					{article.cover && (
+						<img
+							src={`http://localhost:1337${article.cover.url}`}
+							alt={article.title}
+						/>
 					)}
 				</div>
 
-				<p
-					style={{
-						fontSize: 16,
-						marginBottom: 32,
-						color: "#555",
-						lineHeight: 1.6,
-					}}>
-					{article.description}
-				</p>
-
-				<div
-					style={{
-						marginTop: 32,
-						lineHeight: 1.8,
-						color: "#555",
-					}}>
-					{article.blocks && article.blocks.length > 0 ? (
-						<div>
-							{article.blocks.map((block, index) => (
-								<BlockRenderer
-									key={block.id || index}
-									block={block}
-								/>
-							))}
-						</div>
-					) : (
-						<p>Không có nội dung chi tiết</p>
-					)}
-				</div>
+				{article.blocks && article.blocks.length > 0 ? (
+					<div>
+						{article.blocks.map((block) => (
+							<BlockRenderer key={block.id} block={block} />
+						))}
+					</div>
+				) : (
+					<p>Không có nội dung</p>
+				)}
 			</article>
 		</div>
 	);

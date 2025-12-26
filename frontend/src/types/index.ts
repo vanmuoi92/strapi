@@ -80,6 +80,16 @@ export interface Global {
 	};
 	defaultSeo?: any;
 	mainMenu?: MenuItem[];
+	footerAboutTitle?: string;
+	footerAboutDescription?: string;
+	footerContactTitle?: string;
+	footerEmail?: string;
+	footerPhone?: string;
+	footerCopyright?: string;
+	footerLogo?: {
+		url: string;
+		alternativeText?: string;
+	};
 	createdAt: string;
 	updatedAt: string;
 }

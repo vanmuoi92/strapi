@@ -49,6 +49,18 @@ export interface PageBuilderContactForm extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBuilderGallery extends Struct.ComponentSchema {
+  collectionName: 'components_shared_galleries';
+  info: {
+    displayName: 'Gallery';
+    icon: 'images';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    isFullWidth: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
 export interface PageBuilderGrid extends Struct.ComponentSchema {
   collectionName: 'components_shared_grids';
   info: {
@@ -86,7 +98,36 @@ export interface PageBuilderMedia extends Struct.ComponentSchema {
     icon: 'file-video';
   };
   attributes: {
+    backgroundColor: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#fff'>;
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    isFullWidth: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface PageBuilderOptionItem extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_option_items';
+  info: {
+    displayName: 'Option Item';
+    icon: 'check';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface PageBuilderOptionsList extends Struct.ComponentSchema {
+  collectionName: 'components_shared_options_lists';
+  info: {
+    displayName: 'Options List';
+    icon: 'list-ul';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    items: Schema.Attribute.Component<'page-builder.option-item', true>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -98,7 +139,7 @@ export interface PageBuilderRichText extends Struct.ComponentSchema {
     icon: 'align-justify';
   };
   attributes: {
-    body: Schema.Attribute.RichText;
+    body: Schema.Attribute.Blocks;
   };
 }
 
@@ -178,9 +219,12 @@ declare module '@strapi/strapi' {
       'global-share.sub-menu-item': GlobalShareSubMenuItem;
       'page-builder.card': PageBuilderCard;
       'page-builder.contact-form': PageBuilderContactForm;
+      'page-builder.gallery': PageBuilderGallery;
       'page-builder.grid': PageBuilderGrid;
       'page-builder.hero': PageBuilderHero;
       'page-builder.media': PageBuilderMedia;
+      'page-builder.option-item': PageBuilderOptionItem;
+      'page-builder.options-list': PageBuilderOptionsList;
       'page-builder.rich-text': PageBuilderRichText;
       'page-builder.slider-banner': PageBuilderSliderBanner;
       'page-builder.slider-banner-item': PageBuilderSliderBannerItem;

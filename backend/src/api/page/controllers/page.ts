@@ -91,6 +91,34 @@ export default factories.createCoreController("api::page.page", {
 						"page-builder.contact-form": {
 							populate: "*",
 						},
+						"page-builder.gallery": {
+							populate: {
+								images: {
+									fields: [
+										"url",
+										"alternativeText",
+										"width",
+										"height",
+									],
+								},
+							},
+						},
+						"page-builder.options-list": {
+							populate: {
+								items: {
+									populate: {
+										icon: {
+											fields: [
+												"url",
+												"alternativeText",
+												"width",
+												"height",
+											],
+										},
+									},
+								},
+							},
+						},
 					},
 				},
 				cover: {
@@ -99,11 +127,6 @@ export default factories.createCoreController("api::page.page", {
 				author: true,
 			},
 		});
-
-		console.log(
-			"DEBUG: Page findBySlug result:",
-			JSON.stringify(result?.[0]?.blocks, null, 2),
-		);
 
 		if (!result || result.length === 0) {
 			return ctx.notFound("Page not found");
@@ -182,14 +205,38 @@ export default factories.createCoreController("api::page.page", {
 					"page-builder.contact-form": {
 						populate: "*",
 					},
+					"page-builder.gallery": {
+						populate: {
+							images: {
+								fields: [
+									"url",
+									"alternativeText",
+									"width",
+									"height",
+								],
+							},
+						},
+					},
+					"page-builder.options-list": {
+						populate: {
+							items: {
+								populate: {
+									icon: {
+										fields: [
+											"url",
+											"alternativeText",
+											"width",
+											"height",
+										],
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		};
 		const response = await super.findOne(ctx);
-		console.log(
-			"DEBUG: Page findOne response:",
-			JSON.stringify(response?.data?.attributes?.blocks, null, 2),
-		);
 		return response;
 	},
 });

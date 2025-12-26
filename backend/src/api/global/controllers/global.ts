@@ -6,10 +6,11 @@ import { factories } from "@strapi/strapi";
 
 export default factories.createCoreController("api::global.global", {
 	async find(ctx) {
-		// Populate all fields including nested components
+		// Populate all fields including nested components and media
 		ctx.query.populate = {
 			favicon: true,
 			Logo: true,
+			footerLogo: true,
 			defaultSeo: {
 				populate: "*",
 			},

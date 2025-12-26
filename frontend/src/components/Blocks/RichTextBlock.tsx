@@ -1,26 +1,21 @@
-import React, { useMemo } from "react";
-import { marked } from "marked";
+import React from "react";
+import {
+	BlocksRenderer,
+	type BlocksContent,
+} from "@strapi/blocks-react-renderer";
 
 interface RichTextBlockProps {
-	body: string;
+	body: BlocksContent;
 }
 
 const RichTextBlock: React.FC<RichTextBlockProps> = ({ body }) => {
-	// Use useMemo to avoid re-parsing on every render if body hasn't changed
-	const htmlContent = useMemo(() => {
-		if (!body) return "";
-		// Use marked.parseSync for synchronous rendering inside component
-		return marked.parse(body);
-	}, [body]);
+	if (!body) return null;
 
 	return (
 		<div className="container">
-			<div
-				className="rich-text-content"
-				dangerouslySetInnerHTML={{
-					__html: htmlContent,
-				}}
-			/>
+			<div className="rich-text-content">
+				<BlocksRenderer content={body} />
+			</div>
 		</div>
 	);
 };

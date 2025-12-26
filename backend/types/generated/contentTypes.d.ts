@@ -489,6 +489,8 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'page-builder.hero',
         'page-builder.grid',
         'page-builder.contact-form',
+        'page-builder.gallery',
+        'page-builder.options-list',
       ]
     >;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
@@ -627,6 +629,15 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     defaultSeo: Schema.Attribute.Component<'shared.seo', false>;
     favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    footerAboutDescription: Schema.Attribute.Text;
+    footerAboutTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'V\u1EC1 ch\u00FAng t\u00F4i'>;
+    footerContactTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Li\u00EAn h\u1EC7'>;
+    footerCopyright: Schema.Attribute.String;
+    footerEmail: Schema.Attribute.String;
+    footerLogo: Schema.Attribute.Media<'images'>;
+    footerPhone: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -665,6 +676,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page-builder.hero',
         'page-builder.grid',
         'page-builder.contact-form',
+        'page-builder.gallery',
+        'page-builder.options-list',
       ]
     >;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;

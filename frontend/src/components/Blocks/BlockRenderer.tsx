@@ -5,6 +5,8 @@ import Grid from "./Grid";
 import SliderBanner from "./SliderBanner";
 import Spacing from "./Spacing";
 import ContactForm from "./ContactForm";
+import Gallery from "./Gallery";
+import OptionsList from "./OptionsList";
 
 interface Block {
 	__component: string;
@@ -21,7 +23,13 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 		case "page-builder.rich-text":
 			return <RichTextBlock body={block.body} />;
 		case "page-builder.media":
-			return <MediaBlock file={block.file} />;
+			return (
+				<MediaBlock
+					file={block.file}
+					backgroundColor={block.backgroundColor}
+					isFullWidth={block.isFullWidth}
+				/>
+			);
 		case "page-builder.hero":
 			return (
 				<Hero
@@ -56,6 +64,21 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 				<ContactForm
 					Title={block.Title}
 					Description={block.Description}
+				/>
+			);
+		case "page-builder.gallery":
+			return (
+				<Gallery
+					images={block.images}
+					isFullWidth={block.isFullWidth}
+				/>
+			);
+		case "page-builder.options-list":
+			return (
+				<OptionsList
+					title={block.title}
+					description={block.description}
+					items={block.items}
 				/>
 			);
 		default:

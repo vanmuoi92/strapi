@@ -13,11 +13,28 @@ interface MenuItem {
 interface FooterProps {
 	mainMenu?: MenuItem[];
 	siteName?: string;
+	footerAboutTitle?: string;
+	footerAboutDescription?: string;
+	footerContactTitle?: string;
+	footerEmail?: string;
+	footerPhone?: string;
+	footerCopyright?: string;
+	footerLogo?: {
+		url: string;
+		alternativeText?: string;
+	};
 }
 
 const Footer: React.FC<FooterProps> = ({
 	mainMenu = [],
 	siteName = "Nimo Electric Kart",
+	footerAboutTitle = "Về chúng tôi",
+	footerAboutDescription,
+	footerContactTitle = "Liên hệ",
+	footerEmail,
+	footerPhone,
+	footerCopyright,
+	footerLogo,
 }) => {
 	const year = new Date().getFullYear();
 
@@ -26,8 +43,23 @@ const Footer: React.FC<FooterProps> = ({
 			<div className={styles.footerContainer}>
 				<div className={styles.footerContent}>
 					<div className={styles.footerSection}>
-						<h3>Về chúng tôi</h3>
-						<p>{siteName} - Nền tảng quản lý xe điện hiện đại</p>
+						{footerLogo ? (
+							<img
+								src={`http://localhost:1337${footerLogo.url}`}
+								alt={footerLogo.alternativeText || siteName}
+								className={styles.footerLogo}
+								style={{
+									maxWidth: "150px",
+									marginBottom: "20px",
+								}}
+							/>
+						) : (
+							<h3>{footerAboutTitle}</h3>
+						)}
+						<p>
+							{footerAboutDescription ||
+								`${siteName} - Nền tảng quản lý xe điện hiện đại`}
+						</p>
 					</div>
 					<div className={styles.footerSection}>
 						<h3>Liên kết nhanh</h3>
@@ -40,14 +72,21 @@ const Footer: React.FC<FooterProps> = ({
 						</ul>
 					</div>
 					<div className={styles.footerSection}>
-						<h3>Liên hệ</h3>
-						<p>Email: info@nimokart.com</p>
-						<p>Điện thoại: +84 (0) 123 456 789</p>
+						<h3>{footerContactTitle}</h3>
+						{footerEmail && <p>Email: {footerEmail}</p>}
+						{footerPhone && <p>Điện thoại: {footerPhone}</p>}
+						{!footerEmail && !footerPhone && (
+							<>
+								<p>Email: info@nimokart.com</p>
+								<p>Điện thoại: +84 (0) 123 456 789</p>
+							</>
+						)}
 					</div>
 				</div>
 				<div className={styles.footerBottom}>
 					<p>
-						Copyright © {year} {siteName}. All rights reserved.
+						{footerCopyright ||
+							`Copyright © ${year} ${siteName}. All rights reserved.`}
 					</p>
 				</div>
 			</div>

@@ -1,3 +1,5 @@
+import React from "react";
+
 interface MediaFile {
 	url: string;
 	alternativeText?: string;
@@ -5,10 +7,16 @@ interface MediaFile {
 
 interface MediaBlockProps {
 	file?: MediaFile;
+	backgroundColor?: string;
+	isFullWidth?: boolean;
 }
 
-const MediaBlock: React.FC<MediaBlockProps> = ({ file }) => {
-	return (
+const MediaBlock: React.FC<MediaBlockProps> = ({
+	file,
+	backgroundColor = "#fff",
+	isFullWidth = false,
+}) => {
+	const content = (
 		<div
 			style={{
 				textAlign: "center",
@@ -19,8 +27,8 @@ const MediaBlock: React.FC<MediaBlockProps> = ({ file }) => {
 					alt={file.alternativeText || "Media"}
 					style={{
 						maxWidth: "100%",
-						borderRadius: 8,
-						boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+						display: "block",
+						width: "100%",
 					}}
 				/>
 			) : (
@@ -35,6 +43,12 @@ const MediaBlock: React.FC<MediaBlockProps> = ({ file }) => {
 					<p>Media content</p>
 				</div>
 			)}
+		</div>
+	);
+
+	return (
+		<div style={{ backgroundColor }}>
+			{isFullWidth ? content : <div className="container">{content}</div>}
 		</div>
 	);
 };

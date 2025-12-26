@@ -9,9 +9,9 @@ export default {
 				subject: `New Contact Submission from ${result.name}`,
 				text: `
           Name: ${result.name}
-          Email: ${result.email}
-          Phone: ${result.phone || "N/A"}
-          Message: ${result.message}
+         <br> Email: ${result.email}
+         <br> Phone: ${result.phone || "N/A"}
+         <br> Message: ${result.message}
         `,
 			});
 		} catch (err) {

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_options_lists",
+  "info": {
+    "displayName": "Options List",
+    "icon": "list-ul"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "component": "page-builder.option-item",
+      "repeatable": true
+    }
+  }
+}
