@@ -1,5 +1,5 @@
-import { Spin, Empty, Breadcrumb } from "antd";
-import { useParams, Link } from "react-router-dom";
+import { Spin, Empty } from "antd";
+import { useParams } from "react-router-dom";
 import { usePageBySlug } from "@/hooks/useGlobal";
 import { BlockRenderer } from "@/components/Blocks";
 import styles from "./pages.module.scss";
