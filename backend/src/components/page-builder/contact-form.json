@@ -1,16 +1,16 @@
 {
-  "collectionName": "components_page_builder_contact_forms",
-  "info": {
-    "displayName": "Contact Form"
-  },
-  "options": {},
-  "attributes": {
-    "Title": {
-      "type": "string"
-    },
-    "Description": {
-      "type": "blocks"
-    }
-  },
-  "config": {}
+	"collectionName": "components_page_builder_contact_forms",
+	"info": {
+		"displayName": "Contact Form"
+	},
+	"options": {},
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"description": {
+			"type": "blocks"
+		}
+	},
+	"config": {}
 }

@@ -1,21 +1,21 @@
 {
-  "collectionName": "components_global_share_menu_items",
-  "info": {
-    "displayName": "Menu item"
-  },
-  "options": {},
-  "attributes": {
-    "Label": {
-      "type": "string"
-    },
-    "link": {
-      "type": "string"
-    },
-    "subMenuItem": {
-      "type": "component",
-      "component": "global-share.sub-menu-item",
-      "repeatable": true
-    }
-  },
-  "config": {}
+	"collectionName": "components_global_share_menu_items",
+	"info": {
+		"displayName": "Menu item"
+	},
+	"options": {},
+	"attributes": {
+		"label": {
+			"type": "string"
+		},
+		"link": {
+			"type": "string"
+		},
+		"subMenuItem": {
+			"type": "component",
+			"component": "global-share.sub-menu-item",
+			"repeatable": true
+		}
+	},
+	"config": {}
 }
