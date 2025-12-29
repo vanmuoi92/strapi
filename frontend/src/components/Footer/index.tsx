@@ -7,7 +7,7 @@ const { Footer: AntFooter } = Layout;
 
 interface MenuItem {
 	id: number;
-	Label: string;
+	label: string;
 	link: string;
 }
 
@@ -67,7 +67,7 @@ const Footer: React.FC<FooterProps> = ({
 						<ul>
 							{mainMenu.map((item) => (
 								<li key={item.id}>
-									<Link to={item.link}>{item.Label}</Link>
+									<Link to={item.link}>{item.label}</Link>
 								</li>
 							))}
 						</ul>

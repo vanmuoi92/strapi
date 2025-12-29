@@ -9,13 +9,13 @@ const { Header: AntHeader } = Layout;
 
 interface SubMenuItem {
 	id: number;
-	Label: string;
-	Link: string;
+	label: string;
+	link: string;
 }
 
 interface MenuItem {
 	id: number;
-	Label: string;
+	label: string;
 	link: string;
 	subMenuItem: SubMenuItem[];
 }
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({
 			key: item.id.toString(),
 			label: (
 				<Link to={item.link} onClick={() => setIsDrawerVisible(false)}>
-					{item.Label}
+					{item.label}
 				</Link>
 			),
 		};
@@ -67,9 +67,9 @@ const Header: React.FC<HeaderProps> = ({
 					key: `${item.id}-${subItem.id}`,
 					label: (
 						<Link
-							to={subItem.Link}
+							to={subItem.link}
 							onClick={() => setIsDrawerVisible(false)}>
-							{subItem.Label}
+							{subItem.label}
 						</Link>
 					),
 				})),

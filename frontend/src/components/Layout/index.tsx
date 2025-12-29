@@ -23,7 +23,7 @@ const AppLayout: React.FC<LayoutProps> = ({ children }) => {
 			}}>
 			<Header
 				siteName={globalData?.siteName}
-				logo={globalData?.Logo}
+				logo={globalData?.logo}
 				mainMenu={globalData?.mainMenu || []}
 			/>
 			<Content className={styles.content}>

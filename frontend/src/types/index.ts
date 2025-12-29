@@ -55,13 +55,13 @@ export interface Block {
 
 export interface SubMenuItem {
 	id: number;
-	Label: string;
-	Link: string;
+	label: string;
+	link: string;
 }
 
 export interface MenuItem {
 	id: number;
-	Label: string;
+	label: string;
 	link: string;
 	subMenuItem: SubMenuItem[];
 }
@@ -72,7 +72,7 @@ export interface Global {
 	siteName: string;
 	siteDescription?: string;
 	favicon?: any;
-	Logo?: {
+	logo?: {
 		url: string;
 		alternativeText?: string;
 		width?: number;

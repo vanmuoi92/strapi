@@ -62,8 +62,8 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 		case "page-builder.contact-form":
 			return (
 				<ContactForm
-					Title={block.Title}
-					Description={block.Description}
+					title={block.title}
+					description={block.description}
 				/>
 			);
 		case "page-builder.gallery":

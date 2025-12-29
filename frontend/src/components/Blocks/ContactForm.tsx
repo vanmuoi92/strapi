@@ -6,14 +6,11 @@ const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 
 interface ContactFormProps {
-	Title?: string;
-	Description?: any; // Blocks type from Strapi
+	title?: string;
+	description?: any; // Blocks type from Strapi
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({
-	Title: title,
-	Description: description,
-}) => {
+const ContactForm: React.FC<ContactFormProps> = ({ title, description }) => {
 	const [form] = Form.useForm();
 	const [loading, setLoading] = useState(false);
 
