@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Layout, Menu, Button, Drawer } from "antd";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
+import { getImageUrl } from "@/utils/url";
 import styles from "./header.module.scss";
 
 const { Header: AntHeader } = Layout;
@@ -85,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({
 					<Link to="/">
 						{logo ? (
 							<img
-								src={`http://localhost:1337${logo.url}`}
+								src={getImageUrl(logo.url)}
 								alt={logo.alternativeText || siteName}
 								className={styles.logoImage}
 							/>

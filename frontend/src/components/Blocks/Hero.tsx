@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
+import { getImageUrl } from "@/utils/url";
 
 interface HeroProps {
 	title: string;
@@ -44,7 +45,7 @@ const Hero: React.FC<HeroProps> = ({
 						zIndex: 1,
 					}}>
 					<img
-						src={`http://localhost:1337${cover.url}`}
+						src={getImageUrl(cover.url)}
 						alt={cover.alternativeText || title}
 						style={{
 							width: "100%",

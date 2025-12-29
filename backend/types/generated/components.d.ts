@@ -6,7 +6,7 @@ export interface GlobalShareMenuItem extends Struct.ComponentSchema {
     displayName: 'Menu item';
   };
   attributes: {
-    Label: Schema.Attribute.String;
+    label: Schema.Attribute.String;
     link: Schema.Attribute.String;
     subMenuItem: Schema.Attribute.Component<'global-share.sub-menu-item', true>;
   };
@@ -18,8 +18,8 @@ export interface GlobalShareSubMenuItem extends Struct.ComponentSchema {
     displayName: 'Sub Menu Item';
   };
   attributes: {
-    Label: Schema.Attribute.String;
-    Link: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+    link: Schema.Attribute.String;
   };
 }
 
@@ -44,8 +44,8 @@ export interface PageBuilderContactForm extends Struct.ComponentSchema {
     displayName: 'Contact Form';
   };
   attributes: {
-    Description: Schema.Attribute.Blocks;
-    Title: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
   };
 }
 

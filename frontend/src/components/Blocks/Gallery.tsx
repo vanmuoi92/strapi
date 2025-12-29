@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { getImageUrl } from "@/utils/url";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -83,10 +84,10 @@ const Gallery: React.FC<GalleryProps> = ({ images, isFullWidth = false }) => {
 						key={image.id}
 						className="gallery-item"
 						data-fancybox="gallery"
-						data-src={`http://localhost:1337${image.url}`}
+						data-src={getImageUrl(image.url)}
 						data-caption={image.alternativeText || ""}>
 						<img
-							src={`http://localhost:1337${image.url}`}
+							src={getImageUrl(image.url)}
 							alt={image.alternativeText || "Gallery Image"}
 						/>
 					</div>

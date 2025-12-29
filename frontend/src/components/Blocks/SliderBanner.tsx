@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel, Button } from "antd";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "@/utils/url";
 
 interface SliderBannerSlide {
 	id: number;
@@ -38,7 +39,7 @@ const SliderBanner: React.FC<SliderBannerProps> = ({ slides }) => {
 							}}>
 							{slide.image && (
 								<img
-									src={`http://localhost:1337${slide.image.url}`}
+									src={getImageUrl(slide.image.url)}
 									alt={
 										slide.image.alternativeText ||
 										slide.title

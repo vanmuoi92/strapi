@@ -1,4 +1,5 @@
 import React from "react";
+import { getImageUrl } from "@/utils/url";
 
 interface MediaFile {
 	url: string;
@@ -23,7 +24,7 @@ const MediaBlock: React.FC<MediaBlockProps> = ({
 			}}>
 			{file ? (
 				<img
-					src={`http://localhost:1337${file.url}`}
+					src={getImageUrl(file.url)}
 					alt={file.alternativeText || "Media"}
 					style={{
 						maxWidth: "100%",

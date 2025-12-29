@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Card } from "antd";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "@/utils/url";
 
 interface CardItem {
 	id: number;
@@ -46,7 +47,7 @@ const Grid: React.FC<GridProps> = ({ title, description, items }) => {
 												item.image.alternativeText ||
 												item.title
 											}
-											src={`http://localhost:1337${item.image.url}`}
+											src={getImageUrl(item.image.url)}
 											style={{
 												height: "50vh",
 												objectFit: "cover",

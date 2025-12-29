@@ -1,5 +1,6 @@
 import { Layout } from "antd";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "@/utils/url";
 import styles from "./footer.module.scss";
 
 const { Footer: AntFooter } = Layout;
@@ -45,7 +46,7 @@ const Footer: React.FC<FooterProps> = ({
 					<div className={styles.footerSection}>
 						{footerLogo ? (
 							<img
-								src={`http://localhost:1337${footerLogo.url}`}
+								src={getImageUrl(footerLogo.url)}
 								alt={footerLogo.alternativeText || siteName}
 								className={styles.footerLogo}
 								style={{

@@ -1,5 +1,6 @@
 import React from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { getImageUrl } from "@/utils/url";
 
 interface OptionItem {
 	id: number;
@@ -99,7 +100,7 @@ const OptionsList: React.FC<OptionsListProps> = ({
 								{item.icon && (
 									<div className="option-icon">
 										<img
-											src={`http://localhost:1337${item.icon.url}`}
+											src={getImageUrl(item.icon.url)}
 											alt={
 												item.icon.alternativeText ||
 												item.title

@@ -1,6 +1,7 @@
 import { Card, Row, Col, Button, Spin, Empty } from "antd";
 import { Link } from "react-router-dom";
 import { useArticles } from "@/hooks/useArticles";
+import { getImageUrl } from "@/utils/url";
 import styles from "./pages.module.scss";
 
 const Articles: React.FC = () => {
@@ -37,7 +38,9 @@ const Articles: React.FC = () => {
 														.alternativeText ||
 													article.title
 												}
-												src={`http://localhost:1337${article.cover.url}`}
+												src={getImageUrl(
+													article.cover.url,
+												)}
 												style={{
 													height: 200,
 													objectFit: "cover",

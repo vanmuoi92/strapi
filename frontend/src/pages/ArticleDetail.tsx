@@ -2,6 +2,7 @@ import { Spin, Empty, Breadcrumb } from "antd";
 import { BlockRenderer } from "@/components/Blocks";
 import { useParams, Link } from "react-router-dom";
 import { useArticleBySlug } from "@/hooks/useArticles";
+import { getImageUrl } from "@/utils/url";
 import styles from "./pages.module.scss";
 
 const ArticleDetail: React.FC = () => {
@@ -34,7 +35,7 @@ const ArticleDetail: React.FC = () => {
 					<h1 style={{ marginBottom: 40 }}>{article.title}</h1>
 					{article.cover && (
 						<img
-							src={`http://localhost:1337${article.cover.url}`}
+							src={getImageUrl(article.cover.url)}
 							alt={article.title}
 						/>
 					)}
