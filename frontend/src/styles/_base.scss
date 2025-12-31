@@ -16,6 +16,103 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $font-family-heading;
+	font-weight: 400;
+	margin-bottom: 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $font-family-heading;
+	font-weight: 400;
+	margin-bottom: 24px;
+}
+
+h1 {
+	font-size: $font-size-h1;
+	line-height: $line-height-120;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-h1-l;
+	}
+}
+
+h2 {
+	font-size: $font-size-h2;
+	line-height: $line-height-125;
+	letter-spacing: 0.01em;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-h2-l;
+	}
+}
+
+h3 {
+	font-size: $font-size-h3;
+	line-height: $line-height-130;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-h3-l;
+	}
+}
+
+h4 {
+	font-size: $font-size-h4;
+	line-height: $line-height-135;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-h4-l;
+	}
+}
+
+.subtitle {
+	font-size: $font-size-subtitle;
+	line-height: $line-height-140;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-subtitle-l;
+	}
+}
+
+.accent {
+	font-family: $font-family-heading;
+	font-size: $font-size-accent;
+	line-height: $line-height-100;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-accent-l;
+	}
+}
+
+p,
+.body-base {
+	font-family: $font-family-base;
+	font-size: $font-size-body-base;
+	line-height: $line-height-150;
+}
+
+.body-large {
+	font-family: $font-family-base;
+	font-size: $font-size-body-base; // Mobile default
+	line-height: $line-height-150;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-body-large-l;
+	}
+}
+
+.body-caption {
+	font-family: $font-family-base;
+	font-size: $font-size-body-caption;
+	line-height: $line-height-140;
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-size-body-caption-l;
+	}
+}
+
 a {
 	color: $primary-color;
 	text-decoration: none;
@@ -25,7 +122,6 @@ a {
 		color: lighten($primary-color, 10%);
 	}
 }
-
 ul,
 ol {
 	list-style: none;
@@ -88,7 +184,7 @@ img {
 	}
 }
 .container {
-	max-width: 1400px;
+	max-width: 1248px;
 	padding: 0 40px;
 	margin: 0 auto;
 }

@@ -45,7 +45,9 @@
 				"page-builder.grid",
 				"page-builder.contact-form",
 				"page-builder.gallery",
-				"page-builder.options-list"
+				"page-builder.options-list",
+				"page-builder.mechanical-canvas",
+				"page-builder.get-articles"
 			]
 		}
 	}

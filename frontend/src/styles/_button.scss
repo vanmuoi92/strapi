@@ -1,0 +1,20 @@
+.ant-btn {
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 100%;
+	letter-spacing: 2%;
+	text-transform: uppercase;
+	padding: 16px;
+	box-shadow: none;
+}
+.ant-btn-primary {
+	background: $primary-color;
+	&:hover {
+		background: rgba($primary-color, 0.8) !important;
+	}
+}
+
+.ant-btn-default {
+	border: 1px solid $primary-color;
+	color: $primary-color;
+}

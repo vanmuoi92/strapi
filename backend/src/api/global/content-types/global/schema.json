@@ -41,30 +41,20 @@
 			"component": "global-share.menu-item",
 			"repeatable": true
 		},
-		"footerAboutTitle": {
-			"type": "string",
-			"default": "Về chúng tôi"
+		"footerContactInfo": {
+			"type": "blocks"
 		},
-		"footerAboutDescription": {
+		"iframeMap": {
 			"type": "text"
 		},
-		"footerContactTitle": {
-			"type": "string",
-			"default": "Liên hệ"
-		},
-		"footerEmail": {
+		"facebookUrl": {
 			"type": "string"
 		},
-		"footerPhone": {
+		"instagramUrl": {
 			"type": "string"
 		},
-		"footerCopyright": {
+		"youtubeUrl": {
 			"type": "string"
-		},
-		"footerLogo": {
-			"type": "media",
-			"multiple": false,
-			"allowedTypes": ["images"]
 		}
 	}
 }

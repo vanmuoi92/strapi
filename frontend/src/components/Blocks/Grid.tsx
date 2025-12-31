@@ -18,28 +18,55 @@ interface GridProps {
 	title?: string;
 	description?: string;
 	items: CardItem[];
+	maxCardWidth?: string;
+	maxIntroWidth?: string;
+	maxSectionWidth?: string;
 }
 
-const Grid: React.FC<GridProps> = ({ title, description, items }) => {
+const Grid: React.FC<GridProps> = ({
+	title,
+	description,
+	items,
+	maxCardWidth = "100%",
+	maxIntroWidth = "768px",
+	maxSectionWidth = "100%",
+}) => {
 	return (
-		<div className="container">
+		<div
+			className="container"
+			style={{ maxWidth: maxSectionWidth, margin: "0 auto" }}>
 			{(title || description) && (
-				<div style={{ marginBottom: "50px", textAlign: "center" }}>
+				<div
+					style={{
+						marginBottom: "80px",
+						textAlign: "center",
+						maxWidth: maxIntroWidth,
+						margin: "0 auto 80px",
+					}}>
 					{title && <h2>{title}</h2>}
-					{description && (
-						<p style={{ fontSize: "16px", color: "#666" }}>
-							{description}
-						</p>
-					)}
+					{description && <p>{description}</p>}
 				</div>
 			)}
-			<Row gutter={[24, 24]}>
+			<Row gutter={[24, 24]} style={{ justifyContent: "space-between" }}>
 				{items &&
 					items.map((item) => (
-						<Col xs={24} sm={24} md={12} lg={12} key={item.id}>
+						<Col
+							xs={24}
+							sm={24}
+							md={8}
+							lg={8}
+							key={item.id}
+							style={{ maxWidth: maxCardWidth }}>
 							<Card
-								hoverable
-								style={{ height: "100%" }}
+								bordered={false}
+								variant="borderless"
+								style={{
+									height: "100%",
+									borderRadius: 0,
+									textAlign: "center",
+									border: "none",
+									boxShadow: "none",
+								}}
 								cover={
 									item.image && (
 										<img
@@ -49,7 +76,10 @@ const Grid: React.FC<GridProps> = ({ title, description, items }) => {
 											}
 											src={getImageUrl(item.image.url)}
 											style={{
-												height: "50vh",
+												maxWidth: "100%",
+												width: "auto",
+												display: "block",
+												margin: "0 auto",
 												objectFit: "cover",
 											}}
 										/>
@@ -58,7 +88,9 @@ const Grid: React.FC<GridProps> = ({ title, description, items }) => {
 								<Card.Meta
 									title={
 										item.link ? (
-											<Link to={item.link}>
+											<Link
+												style={{ color: "#292929" }}
+												to={item.link}>
 												{item.title}
 											</Link>
 										) : (

@@ -10,7 +10,6 @@ export default factories.createCoreController("api::global.global", {
 		ctx.query.populate = {
 			favicon: true,
 			logo: true,
-			footerLogo: true,
 			defaultSeo: {
 				populate: "*",
 			},

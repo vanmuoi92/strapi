@@ -33,7 +33,6 @@ export interface PageBuilderCard extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Text;
     image: Schema.Attribute.Media<'images'>;
-    link: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -61,6 +60,20 @@ export interface PageBuilderGallery extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBuilderGetArticles extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_get_articles';
+  info: {
+    description: '';
+    displayName: 'Get Articles';
+    icon: 'book';
+  };
+  attributes: {
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface PageBuilderGrid extends Struct.ComponentSchema {
   collectionName: 'components_shared_grids';
   info: {
@@ -71,6 +84,11 @@ export interface PageBuilderGrid extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Text;
     items: Schema.Attribute.Component<'page-builder.card', true>;
+    maxCardWidth: Schema.Attribute.String & Schema.Attribute.DefaultTo<'100%'>;
+    maxIntroWidth: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'768px'>;
+    maxSectionWidth: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'100%'>;
     title: Schema.Attribute.String;
   };
 }
@@ -88,6 +106,41 @@ export interface PageBuilderHero extends Struct.ComponentSchema {
     ctaText: Schema.Attribute.String;
     description: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface PageBuilderIconListLeft extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_icon_list_lefts';
+  info: {
+    description: '';
+    displayName: 'Icon List Left';
+    icon: 'list';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#ffffff'>;
+    contentRight: Schema.Attribute.Blocks;
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    items: Schema.Attribute.Component<'page-builder.option-item', true>;
+  };
+}
+
+export interface PageBuilderMechanicalCanvas extends Struct.ComponentSchema {
+  collectionName: 'components_page_builder_mechanical_canvases';
+  info: {
+    description: '';
+    displayName: 'Mechanical Canvas';
+    icon: 'layer-group';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#E6E6E4'>;
+    contentLeft: Schema.Attribute.Blocks;
+    contentRight: Schema.Attribute.Blocks;
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
   };
 }
 
@@ -112,7 +165,7 @@ export interface PageBuilderOptionItem extends Struct.ComponentSchema {
     icon: 'check';
   };
   attributes: {
-    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
     icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -125,7 +178,9 @@ export interface PageBuilderOptionsList extends Struct.ComponentSchema {
     icon: 'list-ul';
   };
   attributes: {
-    description: Schema.Attribute.Text;
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
     items: Schema.Attribute.Component<'page-builder.option-item', true>;
     title: Schema.Attribute.String;
   };
@@ -139,7 +194,16 @@ export interface PageBuilderRichText extends Struct.ComponentSchema {
     icon: 'align-justify';
   };
   attributes: {
+    backgroundColor: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#fff'>;
     body: Schema.Attribute.Blocks;
+    ctaLink: Schema.Attribute.String;
+    ctaText: Schema.Attribute.String;
+    maxWidth: Schema.Attribute.String & Schema.Attribute.DefaultTo<'768px'>;
+    textAlign: Schema.Attribute.Enumeration<
+      ['left', 'center', 'right', 'justify']
+    > &
+      Schema.Attribute.DefaultTo<'center'>;
   };
 }
 
@@ -173,7 +237,9 @@ export interface PageBuilderSliderBannerItem extends Struct.ComponentSchema {
   };
   attributes: {
     ctaLink: Schema.Attribute.String;
+    ctaLink2: Schema.Attribute.String;
     ctaText: Schema.Attribute.String;
+    ctaText2: Schema.Attribute.String;
     description: Schema.Attribute.Text;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     title: Schema.Attribute.String;
@@ -220,8 +286,11 @@ declare module '@strapi/strapi' {
       'page-builder.card': PageBuilderCard;
       'page-builder.contact-form': PageBuilderContactForm;
       'page-builder.gallery': PageBuilderGallery;
+      'page-builder.get-articles': PageBuilderGetArticles;
       'page-builder.grid': PageBuilderGrid;
       'page-builder.hero': PageBuilderHero;
+      'page-builder.icon-list-left': PageBuilderIconListLeft;
+      'page-builder.mechanical-canvas': PageBuilderMechanicalCanvas;
       'page-builder.media': PageBuilderMedia;
       'page-builder.option-item': PageBuilderOptionItem;
       'page-builder.options-list': PageBuilderOptionsList;

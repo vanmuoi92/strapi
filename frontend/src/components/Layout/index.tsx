@@ -32,13 +32,6 @@ const AppLayout: React.FC<LayoutProps> = ({ children }) => {
 			<Footer
 				siteName={globalData?.siteName}
 				mainMenu={globalData?.mainMenu || []}
-				footerAboutTitle={globalData?.footerAboutTitle}
-				footerAboutDescription={globalData?.footerAboutDescription}
-				footerContactTitle={globalData?.footerContactTitle}
-				footerEmail={globalData?.footerEmail}
-				footerPhone={globalData?.footerPhone}
-				footerCopyright={globalData?.footerCopyright}
-				footerLogo={globalData?.footerLogo}
 			/>
 		</Layout>
 	);

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import {
 	fetchArticles,
+	fetchLatestArticles,
 	fetchArticleById,
 	fetchArticleBySlug,
 } from "@/services/api";
@@ -10,6 +11,14 @@ export const useArticles = () => {
 	return useQuery<Article[]>({
 		queryKey: ["articles"],
 		queryFn: fetchArticles,
+		staleTime: 5 * 60 * 1000,
+	});
+};
+
+export const useLatestArticles = (limit: number = 3) => {
+	return useQuery<Article[]>({
+		queryKey: ["articles", "latest", limit],
+		queryFn: () => fetchLatestArticles(limit),
 		staleTime: 5 * 60 * 1000,
 	});
 };

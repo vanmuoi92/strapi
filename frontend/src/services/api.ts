@@ -29,6 +29,18 @@ export const fetchArticles = async () => {
 	}
 };
 
+export const fetchLatestArticles = async (limit: number = 3) => {
+	try {
+		const response = await apiClient.get(
+			`/articles?populate=*&sort=publishedAt:desc&pagination[limit]=${limit}`,
+		);
+		return response.data.data || [];
+	} catch (error) {
+		console.error("Error fetching latest articles:", error);
+		return [];
+	}
+};
+
 export const fetchArticleById = async (id: string) => {
 	try {
 		const response = await apiClient.get(`/articles/${id}?populate=*`);

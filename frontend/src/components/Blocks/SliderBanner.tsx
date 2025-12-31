@@ -9,6 +9,8 @@ interface SliderBannerSlide {
 	description?: string;
 	ctaText?: string;
 	ctaLink?: string;
+	ctaText2?: string;
+	ctaLink2?: string;
 	image: {
 		url: string;
 		alternativeText?: string;
@@ -33,7 +35,7 @@ const SliderBanner: React.FC<SliderBannerProps> = ({ slides }) => {
 								height: "500px",
 								display: "flex",
 								alignItems: "center",
-								justifyContent: "center",
+								justifyContent: "left",
 								color: "#fff",
 								background: "#000",
 							}}>
@@ -59,7 +61,7 @@ const SliderBanner: React.FC<SliderBannerProps> = ({ slides }) => {
 								style={{
 									position: "relative",
 									zIndex: 1,
-									textAlign: "center",
+									textAlign: "left",
 									padding: "0 20px",
 									maxWidth: "800px",
 								}}>
@@ -84,13 +86,22 @@ const SliderBanner: React.FC<SliderBannerProps> = ({ slides }) => {
 										{slide.description}
 									</p>
 								)}
-								{slide.ctaText && slide.ctaLink && (
-									<Link to={slide.ctaLink}>
-										<Button type="primary" size="large">
-											{slide.ctaText}
-										</Button>
-									</Link>
-								)}
+								<div style={{ display: "flex", gap: "16px" }}>
+									{slide.ctaText && slide.ctaLink && (
+										<Link to={slide.ctaLink}>
+											<Button type="primary" size="large">
+												{slide.ctaText}
+											</Button>
+										</Link>
+									)}
+									{slide.ctaText2 && slide.ctaLink2 && (
+										<Link to={slide.ctaLink2}>
+											<Button size="large">
+												{slide.ctaText2}
+											</Button>
+										</Link>
+									)}
+								</div>
 							</div>
 						</div>
 					</div>

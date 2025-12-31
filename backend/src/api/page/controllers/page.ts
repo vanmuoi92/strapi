@@ -119,6 +119,37 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
+						"page-builder.mechanical-canvas": {
+							populate: {
+								image: {
+									fields: [
+										"url",
+										"alternativeText",
+										"width",
+										"height",
+									],
+								},
+							},
+						},
+						"page-builder.icon-list-left": {
+							populate: {
+								items: {
+									populate: {
+										icon: {
+											fields: [
+												"url",
+												"alternativeText",
+												"width",
+												"height",
+											],
+										},
+									},
+								},
+							},
+						},
+						"page-builder.get-articles": {
+							populate: "*",
+						},
 					},
 				},
 				cover: {
@@ -232,6 +263,37 @@ export default factories.createCoreController("api::page.page", {
 								},
 							},
 						},
+					},
+					"page-builder.mechanical-canvas": {
+						populate: {
+							image: {
+								fields: [
+									"url",
+									"alternativeText",
+									"width",
+									"height",
+								],
+							},
+						},
+					},
+					"page-builder.icon-list-left": {
+						populate: {
+							items: {
+								populate: {
+									icon: {
+										fields: [
+											"url",
+											"alternativeText",
+											"width",
+											"height",
+										],
+									},
+								},
+							},
+						},
+					},
+					"page-builder.get-articles": {
+						populate: "*",
 					},
 				},
 			},

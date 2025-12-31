@@ -491,7 +491,13 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'page-builder.contact-form',
         'page-builder.gallery',
         'page-builder.options-list',
+        'page-builder.mechanical-canvas',
+        'page-builder.get-articles',
       ]
+    >;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
     >;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     createdAt: Schema.Attribute.DateTime;
@@ -561,6 +567,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -573,7 +580,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -629,16 +636,11 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     defaultSeo: Schema.Attribute.Component<'shared.seo', false>;
+    facebookUrl: Schema.Attribute.String;
     favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    footerAboutDescription: Schema.Attribute.Text;
-    footerAboutTitle: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'V\u1EC1 ch\u00FAng t\u00F4i'>;
-    footerContactTitle: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Li\u00EAn h\u1EC7'>;
-    footerCopyright: Schema.Attribute.String;
-    footerEmail: Schema.Attribute.String;
-    footerLogo: Schema.Attribute.Media<'images'>;
-    footerPhone: Schema.Attribute.String;
+    footerContactInfo: Schema.Attribute.Blocks;
+    iframeMap: Schema.Attribute.Text;
+    instagramUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -653,6 +655,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    youtubeUrl: Schema.Attribute.String;
   };
 }
 
@@ -679,6 +682,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page-builder.contact-form',
         'page-builder.gallery',
         'page-builder.options-list',
+        'page-builder.mechanical-canvas',
+        'page-builder.get-articles',
       ]
     >;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;

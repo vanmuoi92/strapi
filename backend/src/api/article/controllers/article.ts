@@ -107,12 +107,44 @@ export default factories.createCoreController("api::article.article", {
 								},
 							},
 						},
+						"page-builder.mechanical-canvas": {
+							populate: {
+								image: {
+									fields: [
+										"url",
+										"alternativeText",
+										"width",
+										"height",
+									],
+								},
+							},
+						},
+						"page-builder.icon-list-left": {
+							populate: {
+								items: {
+									populate: {
+										icon: {
+											fields: [
+												"url",
+												"alternativeText",
+												"width",
+												"height",
+											],
+										},
+									},
+								},
+							},
+						},
+						"page-builder.get-articles": {
+							populate: "*",
+						},
 					},
 				},
 				cover: {
 					fields: ["url", "alternativeText", "width", "height"],
 				},
 				author: true,
+				categories: true,
 			},
 		});
 
@@ -221,8 +253,44 @@ export default factories.createCoreController("api::article.article", {
 							},
 						},
 					},
+					"page-builder.mechanical-canvas": {
+						populate: {
+							image: {
+								fields: [
+									"url",
+									"alternativeText",
+									"width",
+									"height",
+								],
+							},
+						},
+					},
+					"page-builder.icon-list-left": {
+						populate: {
+							items: {
+								populate: {
+									icon: {
+										fields: [
+											"url",
+											"alternativeText",
+											"width",
+											"height",
+										],
+									},
+								},
+							},
+						},
+					},
+					"page-builder.get-articles": {
+						populate: "*",
+					},
 				},
 			},
+			cover: {
+				fields: ["url", "alternativeText", "width", "height"],
+			},
+			author: true,
+			categories: true,
 		};
 		const response = await super.findOne(ctx);
 		return response;

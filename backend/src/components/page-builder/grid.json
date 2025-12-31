@@ -17,6 +17,18 @@
 			"type": "component",
 			"repeatable": true,
 			"component": "page-builder.card"
+		},
+		"maxCardWidth": {
+			"type": "string",
+			"default": "100%"
+		},
+		"maxIntroWidth": {
+			"type": "string",
+			"default": "768px"
+		},
+		"maxSectionWidth": {
+			"type": "string",
+			"default": "100%"
 		}
 	}
 }

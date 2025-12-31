@@ -1,6 +1,12 @@
-import { Layout } from "antd";
-import { Link } from "react-router-dom";
-import { getImageUrl } from "@/utils/url";
+import { Layout, Row, Col } from "antd";
+import {
+	FacebookOutlined,
+	InstagramOutlined,
+	YoutubeOutlined,
+	MailOutlined,
+} from "@ant-design/icons";
+import { useGlobal } from "@/hooks/useGlobal";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import styles from "./footer.module.scss";
 
 const { Footer: AntFooter } = Layout;
@@ -14,80 +20,113 @@ interface MenuItem {
 interface FooterProps {
 	mainMenu?: MenuItem[];
 	siteName?: string;
-	footerAboutTitle?: string;
-	footerAboutDescription?: string;
-	footerContactTitle?: string;
-	footerEmail?: string;
-	footerPhone?: string;
-	footerCopyright?: string;
-	footerLogo?: {
-		url: string;
-		alternativeText?: string;
-	};
 }
 
-const Footer: React.FC<FooterProps> = ({
-	mainMenu = [],
-	siteName = "Nimo Electric Kart",
-	footerAboutTitle = "Về chúng tôi",
-	footerAboutDescription,
-	footerContactTitle = "Liên hệ",
-	footerEmail,
-	footerPhone,
-	footerCopyright,
-	footerLogo,
-}) => {
+const Footer: React.FC<FooterProps> = () => {
+	const { data: global } = useGlobal();
 	const year = new Date().getFullYear();
+
+	if (!global) return null;
+
+	const siteName = global.siteName || "Nimo Electric Kart";
+	const footerContactInfo = global.footerContactInfo;
+	const iframeMap = global.iframeMap;
+	const facebookUrl = global.facebookUrl;
+	const instagramUrl = global.instagramUrl;
+	const youtubeUrl = global.youtubeUrl;
 
 	return (
 		<AntFooter className={styles.footer}>
 			<div className={styles.footerContainer}>
 				<div className={styles.footerContent}>
-					<div className={styles.footerSection}>
-						{footerLogo ? (
-							<img
-								src={getImageUrl(footerLogo.url)}
-								alt={footerLogo.alternativeText || siteName}
-								className={styles.footerLogo}
-								style={{
-									maxWidth: "150px",
-									marginBottom: "20px",
-								}}
-							/>
-						) : (
-							<h3>{footerAboutTitle}</h3>
-						)}
-						<p>
-							{footerAboutDescription ||
-								`${siteName} - Nền tảng quản lý xe điện hiện đại`}
-						</p>
-					</div>
-					<div className={styles.footerSection}>
-						<h3>Liên kết nhanh</h3>
-						<ul>
-							{mainMenu.map((item) => (
-								<li key={item.id}>
-									<Link to={item.link}>{item.label}</Link>
-								</li>
-							))}
-						</ul>
-					</div>
-					<div className={styles.footerSection}>
-						<h3>{footerContactTitle}</h3>
-						{footerEmail && <p>Email: {footerEmail}</p>}
-						{footerPhone && <p>Điện thoại: {footerPhone}</p>}
-						{!footerEmail && !footerPhone && (
-							<>
-								<p>Email: info@nimokart.com</p>
-								<p>Điện thoại: +84 (0) 123 456 789</p>
-							</>
-						)}
-					</div>
+					<Row gutter={[48, 48]}>
+						<Col xs={24} md={6}>
+							<div className={styles.footerSection}>
+								<h3>Contact Info</h3>
+								<div className={styles.contactInfo}>
+									{footerContactInfo ? (
+										<BlocksRenderer
+											content={footerContactInfo}
+										/>
+									) : (
+										<>
+											<p>
+												<strong>HQ / Showroom:</strong>{" "}
+												NiMO Lab
+											</p>
+											<p>
+												<strong>Track:</strong> Di An,
+												Binh Duong
+											</p>
+											<p>
+												<strong>Hotline:</strong> +84 12
+												34 56 789
+											</p>
+										</>
+									)}
+								</div>
+								<div className={styles.socialIcons}>
+									{facebookUrl && (
+										<a
+											href={facebookUrl}
+											target="_blank"
+											rel="noreferrer">
+											<FacebookOutlined />
+										</a>
+									)}
+									{instagramUrl && (
+										<a
+											href={instagramUrl}
+											target="_blank"
+											rel="noreferrer">
+											<InstagramOutlined />
+										</a>
+									)}
+									{youtubeUrl && (
+										<a
+											href={youtubeUrl}
+											target="_blank"
+											rel="noreferrer">
+											<YoutubeOutlined />
+										</a>
+									)}
+									<a href="mailto:info@nimokart.com">
+										<MailOutlined />
+									</a>
+								</div>
+							</div>
+						</Col>
+						<Col xs={24} md={18}>
+							<div className={styles.mapContainer}>
+								{iframeMap ? (
+									<div
+										className="wrapper-iframe"
+										dangerouslySetInnerHTML={{
+											__html: iframeMap,
+										}}
+									/>
+								) : (
+									<div
+										style={{
+											height: "100%",
+											background: "#eee",
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "center",
+										}}>
+										Map not configured
+									</div>
+								)}
+							</div>
+						</Col>
+					</Row>
 				</div>
-				<div className={styles.footerBottom}>
+			</div>
+
+			<div className={styles.footerBottom}>
+				<div className={styles.footerContainer}>
 					<p>
-						{footerCopyright ||
-							`Copyright © ${year} ${siteName}. All rights reserved.`}
+						Copyright © {year} {siteName}. All rights reserved.
 					</p>
 				</div>
 			</div>

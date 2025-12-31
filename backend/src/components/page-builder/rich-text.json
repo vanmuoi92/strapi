@@ -1,14 +1,33 @@
 {
-  "collectionName": "components_shared_rich_texts",
-  "info": {
-    "displayName": "Rich text",
-    "icon": "align-justify",
-    "description": ""
-  },
-  "options": {},
-  "attributes": {
-    "body": {
-      "type": "blocks"
-    }
-  }
+	"collectionName": "components_shared_rich_texts",
+	"info": {
+		"displayName": "Rich text",
+		"icon": "align-justify",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"body": {
+			"type": "blocks"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"maxWidth": {
+			"type": "string",
+			"default": "768px"
+		},
+		"ctaText": {
+			"type": "string"
+		},
+		"ctaLink": {
+			"type": "string"
+		},
+		"textAlign": {
+			"type": "enumeration",
+			"enum": ["left", "center", "right", "justify"],
+			"default": "center"
+		}
+	}
 }

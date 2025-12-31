@@ -10,7 +10,13 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "blocks"
+    },
+    "ctaText": {
+      "type": "string"
+    },
+    "ctaLink": {
+      "type": "string"
     },
     "items": {
       "type": "component",

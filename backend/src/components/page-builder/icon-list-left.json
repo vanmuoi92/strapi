@@ -1,0 +1,29 @@
+{
+	"collectionName": "components_page_builder_icon_list_lefts",
+	"info": {
+		"displayName": "Icon List Left",
+		"icon": "list",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"items": {
+			"type": "component",
+			"repeatable": true,
+			"component": "page-builder.option-item"
+		},
+		"contentRight": {
+			"type": "blocks"
+		},
+		"ctaText": {
+			"type": "string"
+		},
+		"ctaLink": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#ffffff"
+		}
+	}
+}

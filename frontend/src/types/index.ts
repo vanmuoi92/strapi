@@ -11,6 +11,7 @@ export interface Article {
 		height?: number;
 	};
 	author?: Author;
+	categories?: Category[];
 	blocks?: Block[];
 	createdAt: string;
 	updatedAt: string;
@@ -80,16 +81,11 @@ export interface Global {
 	};
 	defaultSeo?: any;
 	mainMenu?: MenuItem[];
-	footerAboutTitle?: string;
-	footerAboutDescription?: string;
-	footerContactTitle?: string;
-	footerEmail?: string;
-	footerPhone?: string;
-	footerCopyright?: string;
-	footerLogo?: {
-		url: string;
-		alternativeText?: string;
-	};
+	footerContactInfo?: any;
+	iframeMap?: string;
+	facebookUrl?: string;
+	instagramUrl?: string;
+	youtubeUrl?: string;
 	createdAt: string;
 	updatedAt: string;
 }

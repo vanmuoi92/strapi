@@ -7,6 +7,9 @@ import Spacing from "./Spacing";
 import ContactForm from "./ContactForm";
 import Gallery from "./Gallery";
 import OptionsList from "./OptionsList";
+import MechanicalCanvas from "./MechanicalCanvas";
+import IconListLeft from "./IconListLeft";
+import GetArticles from "./GetArticles";
 
 interface Block {
 	__component: string;
@@ -21,7 +24,16 @@ interface BlockRendererProps {
 const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 	switch (block.__component) {
 		case "page-builder.rich-text":
-			return <RichTextBlock body={block.body} />;
+			return (
+				<RichTextBlock
+					body={block.body}
+					backgroundColor={block.backgroundColor}
+					maxWidth={block.maxWidth}
+					textAlign={block.textAlign}
+					ctaText={block.ctaText}
+					ctaLink={block.ctaLink}
+				/>
+			);
 		case "page-builder.media":
 			return (
 				<MediaBlock
@@ -46,6 +58,9 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 					title={block.title}
 					description={block.description}
 					items={block.items}
+					maxCardWidth={block.maxCardWidth}
+					maxIntroWidth={block.maxIntroWidth}
+					maxSectionWidth={block.maxSectionWidth}
 				/>
 			);
 		case "page-builder.slider-banner":
@@ -79,6 +94,38 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({ block }) => {
 					title={block.title}
 					description={block.description}
 					items={block.items}
+					ctaText={block.ctaText}
+					ctaLink={block.ctaLink}
+				/>
+			);
+		case "page-builder.mechanical-canvas":
+			return (
+				<MechanicalCanvas
+					title={block.title}
+					contentLeft={block.contentLeft}
+					contentRight={block.contentRight}
+					ctaText={block.ctaText}
+					ctaLink={block.ctaLink}
+					image={block.image}
+					backgroundColor={block.backgroundColor}
+				/>
+			);
+		case "page-builder.icon-list-left":
+			return (
+				<IconListLeft
+					items={block.items}
+					contentRight={block.contentRight}
+					ctaText={block.ctaText}
+					ctaLink={block.ctaLink}
+					backgroundColor={block.backgroundColor}
+				/>
+			);
+		case "page-builder.get-articles":
+			return (
+				<GetArticles
+					title={block.title}
+					ctaText={block.ctaText}
+					ctaLink={block.ctaLink}
 				/>
 			);
 		default:

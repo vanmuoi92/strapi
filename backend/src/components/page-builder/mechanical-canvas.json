@@ -1,0 +1,33 @@
+{
+	"collectionName": "components_page_builder_mechanical_canvases",
+	"info": {
+		"displayName": "Mechanical Canvas",
+		"icon": "layer-group",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"image": {
+			"type": "media",
+			"multiple": false,
+			"required": false,
+			"allowedTypes": ["images"]
+		},
+		"contentLeft": {
+			"type": "blocks"
+		},
+		"contentRight": {
+			"type": "blocks"
+		},
+		"ctaText": {
+			"type": "string"
+		},
+		"ctaLink": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#E6E6E4"
+		}
+	}
+}
