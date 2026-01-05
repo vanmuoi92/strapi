@@ -16,7 +16,7 @@ const Articles: React.FC = () => {
 						fontSize: 32,
 						textAlign: "center",
 					}}>
-					Tất cả bài viết
+					All Posts
 				</h1>
 
 				{isLoading ? (
@@ -73,7 +73,7 @@ const Articles: React.FC = () => {
 									</p>
 									<Link to={`/articles/${article.slug}`}>
 										<Button type="primary" block>
-											Đọc thêm
+											Read More
 										</Button>
 									</Link>
 								</Card>
@@ -81,7 +81,7 @@ const Articles: React.FC = () => {
 						))}
 					</Row>
 				) : (
-					<Empty description="Không có bài viết nào" />
+					<Empty description="No articles found" />
 				)}
 			</div>
 		</div>

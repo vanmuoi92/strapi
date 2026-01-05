@@ -18,7 +18,7 @@ const ArticleDetail: React.FC = () => {
 	}
 
 	if (!article) {
-		return <Empty description="Bài viết không tìm thấy" />;
+		return <Empty description="Article not found" />;
 	}
 
 	return (
@@ -27,7 +27,7 @@ const ArticleDetail: React.FC = () => {
 				<div className="container" style={{ marginBottom: 100 }}>
 					<Breadcrumb
 						items={[
-							{ title: <Link to="/articles">Bài viết</Link> },
+							{ title: <Link to="/articles">Articles</Link> },
 							{ title: article.title },
 						]}
 						style={{ marginBottom: 24 }}

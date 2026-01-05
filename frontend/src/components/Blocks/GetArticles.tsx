@@ -100,7 +100,7 @@ const GetArticles: React.FC<GetArticlesProps> = ({
 						)}
 					</>
 				) : (
-					<Empty description="Không có bài viết nào" />
+					<Empty description="No articles found" />
 				)}
 			</div>
 		</div>
