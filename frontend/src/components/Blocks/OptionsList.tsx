@@ -68,7 +68,18 @@ const OptionsList: React.FC<OptionsListProps> = ({
 							{title && <h2 className="block-title">{title}</h2>}
 							{description && (
 								<div className="block-description">
-									<BlocksRenderer content={description} />
+									<BlocksRenderer
+										content={
+											Array.isArray(description)
+												? description
+												: Array.isArray(
+														(description as any)
+															?.data,
+												  )
+												? (description as any).data
+												: []
+										}
+									/>
 								</div>
 							)}
 							{ctaText && ctaLink && (

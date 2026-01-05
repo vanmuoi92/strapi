@@ -50,7 +50,17 @@ const MechanicalCanvas: React.FC<MechanicalCanvasProps> = ({
 
 						{contentLeft && (
 							<div>
-								<BlocksRenderer content={contentLeft} />
+								<BlocksRenderer
+									content={
+										Array.isArray(contentLeft)
+											? contentLeft
+											: Array.isArray(
+													(contentLeft as any)?.data,
+											  )
+											? (contentLeft as any).data
+											: []
+									}
+								/>
 							</div>
 						)}
 					</Col>
@@ -63,7 +73,17 @@ const MechanicalCanvas: React.FC<MechanicalCanvasProps> = ({
 									color: "#292929",
 									marginBottom: "32px",
 								}}>
-								<BlocksRenderer content={contentRight} />
+								<BlocksRenderer
+									content={
+										Array.isArray(contentRight)
+											? contentRight
+											: Array.isArray(
+													(contentRight as any)?.data,
+											  )
+											? (contentRight as any).data
+											: []
+									}
+								/>
 							</div>
 						)}
 						{ctaText && ctaLink && (

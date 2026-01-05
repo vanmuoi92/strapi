@@ -46,7 +46,18 @@ const Footer: React.FC<FooterProps> = () => {
 								<div className={styles.contactInfo}>
 									{footerContactInfo ? (
 										<BlocksRenderer
-											content={footerContactInfo}
+											content={
+												Array.isArray(footerContactInfo)
+													? footerContactInfo
+													: Array.isArray(
+															(
+																footerContactInfo as any
+															)?.data,
+													  )
+													? (footerContactInfo as any)
+															.data
+													: []
+											}
 										/>
 									) : (
 										<>

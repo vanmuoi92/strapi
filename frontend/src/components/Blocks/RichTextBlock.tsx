@@ -30,7 +30,15 @@ const RichTextBlock: React.FC<RichTextBlockProps> = ({
 				className="container"
 				style={{ maxWidth, margin: "0 auto", textAlign }}>
 				<div className="rich-text-content">
-					<BlocksRenderer content={body} />
+					<BlocksRenderer
+						content={
+							Array.isArray(body)
+								? body
+								: Array.isArray((body as any)?.data)
+								? (body as any).data
+								: []
+						}
+					/>
 				</div>
 				{ctaText && ctaLink && (
 					<div style={{ marginTop: "32px", textAlign: "center" }}>

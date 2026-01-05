@@ -69,7 +69,18 @@ const IconListLeft: React.FC<IconListLeftProps> = ({
 						<div className="content-right">
 							{contentRight && (
 								<div className="block-description">
-									<BlocksRenderer content={contentRight} />
+									<BlocksRenderer
+										content={
+											Array.isArray(contentRight)
+												? contentRight
+												: Array.isArray(
+														(contentRight as any)
+															?.data,
+												  )
+												? (contentRight as any).data
+												: []
+										}
+									/>
 								</div>
 							)}
 							{ctaText && ctaLink && (
