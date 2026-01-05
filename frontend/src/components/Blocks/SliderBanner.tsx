@@ -58,49 +58,58 @@ const SliderBanner: React.FC<SliderBannerProps> = ({ slides }) => {
 								/>
 							)}
 							<div
-								style={{
-									position: "relative",
-									zIndex: 1,
-									textAlign: "left",
-									padding: "0 20px",
-									maxWidth: "800px",
-								}}>
-								{slide.title && (
-									<h2
-										style={{
-											color: "#fff",
-											fontSize: "48px",
-											fontWeight: "bold",
-											marginBottom: "16px",
-										}}>
-										{slide.title}
-									</h2>
-								)}
-								{slide.description && (
-									<p
-										style={{
-											fontSize: "18px",
-											marginBottom: "24px",
-											opacity: 0.9,
-										}}>
-										{slide.description}
-									</p>
-								)}
-								<div style={{ display: "flex", gap: "16px" }}>
-									{slide.ctaText && slide.ctaLink && (
-										<Link to={slide.ctaLink}>
-											<Button type="primary" size="large">
-												{slide.ctaText}
-											</Button>
-										</Link>
+								className="container"
+								style={{ width: "100%" }}>
+								<div
+									style={{
+										position: "relative",
+										zIndex: 1,
+										textAlign: "left",
+										maxWidth: "800px",
+									}}>
+									{slide.title && (
+										<h2
+											style={{
+												color: "#fff",
+												fontSize: "48px",
+												fontWeight: "bold",
+												marginBottom: "16px",
+											}}>
+											{slide.title}
+										</h2>
 									)}
-									{slide.ctaText2 && slide.ctaLink2 && (
-										<Link to={slide.ctaLink2}>
-											<Button size="large">
-												{slide.ctaText2}
-											</Button>
-										</Link>
+									{slide.description && (
+										<p
+											style={{
+												fontSize: "18px",
+												marginBottom: "24px",
+												opacity: 0.9,
+											}}>
+											{slide.description}
+										</p>
 									)}
+									<div
+										style={{
+											display: "flex",
+											gap: "16px",
+										}}>
+										{slide.ctaText && slide.ctaLink && (
+											<Link to={slide.ctaLink}>
+												<Button
+													type="primary"
+													size="large">
+													{slide.ctaText}
+												</Button>
+											</Link>
+										)}
+										{slide.ctaText2 && slide.ctaLink2 && (
+											<Link to={slide.ctaLink2}>
+												<Button size="large">
+													{slide.ctaText2}
+												</Button>
+											</Link>
+										)}
+									</div>
 								</div>
 							</div>
 						</div>

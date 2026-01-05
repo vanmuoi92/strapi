@@ -1,3 +1,6 @@
+body {
+	overflow-x: hidden;
+}
 .header {
 	padding: 0;
 	background: #111111;
@@ -7,7 +10,7 @@
 		justify-content: space-between;
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 24px;
+		padding: 0 40px;
 		height: 100%;
 	}
 
@@ -40,6 +43,9 @@
 		align-items: flex-end;
 		justify-content: center;
 		width: 100%;
+		@media (max-width: 1023px) {
+			justify-content: end;
+		}
 	}
 
 	.menu {
@@ -92,5 +98,12 @@
 
 	:global(.ant-menu) {
 		border: none;
+	}
+}
+@media (max-width: 768px) {
+	.header {
+		.headerContainer {
+			padding: 0 20px;
+		}
 	}
 }

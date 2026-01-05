@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = () => {
 			<div className={styles.footerContainer}>
 				<div className={styles.footerContent}>
 					<Row gutter={[48, 48]}>
-						<Col xs={24} md={6}>
+						<Col xs={24} md={6} style={{ padding: 0 }}>
 							<div className={styles.footerSection}>
 								<h3>Contact Info</h3>
 								<div className={styles.contactInfo}>
@@ -107,7 +107,7 @@ const Footer: React.FC<FooterProps> = () => {
 								</div>
 							</div>
 						</Col>
-						<Col xs={24} md={18}>
+						<Col xs={24} md={18} style={{ padding: 0 }}>
 							<div className={styles.mapContainer}>
 								{iframeMap ? (
 									<div
