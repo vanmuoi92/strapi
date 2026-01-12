@@ -104,3 +104,81 @@ export interface Page {
 	updatedAt: string;
 	publishedAt?: string;
 }
+
+export interface Product {
+	id: number;
+	documentId: string;
+	name: string;
+	slug: string;
+	price: number;
+	quantity: number;
+	description?: string;
+	sizes?: Size[];
+	colours?: Colour[];
+	images?: Array<{
+		id: number;
+		url: string;
+		alternativeText?: string;
+	}>;
+	categories?: ProductCategory[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
+}
+
+export interface ProductCategory {
+	id: number;
+	documentId: string;
+	name: string;
+	descripition?: string;
+	products?: Product[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
+}
+
+export interface Size {
+	id: number;
+	documentId: string;
+	name: string;
+	code: string;
+	products?: Product[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
+}
+
+export interface Colour {
+	id: number;
+	documentId: string;
+	name: string;
+	hexCode?: string;
+	products?: Product[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
+}
+
+export interface Order {
+	id: number;
+	documentId: string;
+	email: string;
+	stripeId: string;
+	orders?: unknown;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
+}
+
+export interface Review {
+	id: number;
+	documentId: string;
+	text: string;
+	productId: number;
+	email: string;
+	stars: number;
+	username: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
+}

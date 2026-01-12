@@ -1,54 +1,82 @@
 {
-	"kind": "collectionType",
-	"collectionName": "pages",
-	"info": {
-		"singularName": "page",
-		"pluralName": "pages",
-		"displayName": "Page"
-	},
-	"options": {
-		"draftAndPublish": true
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"title": {
-			"type": "string"
-		},
-		"description": {
-			"type": "text",
-			"maxLength": 80
-		},
-		"slug": {
-			"type": "uid",
-			"targetField": "title"
-		},
-		"cover": {
-			"type": "media",
-			"multiple": false,
-			"required": false,
-			"allowedTypes": ["images", "files", "videos"]
-		},
-		"author": {
-			"type": "relation",
-			"relation": "manyToOne",
-			"target": "api::author.author",
-			"inversedBy": "pages"
-		},
-		"blocks": {
-			"type": "dynamiczone",
-			"components": [
-				"page-builder.spacing",
-				"page-builder.slider-banner",
-				"page-builder.rich-text",
-				"page-builder.media",
-				"page-builder.hero",
-				"page-builder.grid",
-				"page-builder.contact-form",
-				"page-builder.gallery",
-				"page-builder.options-list",
-				"page-builder.mechanical-canvas",
-				"page-builder.get-articles"
-			]
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "maxLength": 80
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "cover": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "pages"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "page-builder.spacing",
+        "page-builder.slider-banner",
+        "page-builder.rich-text",
+        "page-builder.media",
+        "page-builder.hero",
+        "page-builder.grid",
+        "page-builder.contact-form",
+        "page-builder.gallery",
+        "page-builder.options-list",
+        "page-builder.mechanical-canvas",
+        "page-builder.get-articles"
+      ]
+    }
+  }
 }

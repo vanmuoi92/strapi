@@ -19,10 +19,12 @@ export default factories.createCoreController("api::page.page", {
 
 	async findBySlug(ctx) {
 		const { slug } = ctx.params;
+		const locale = (ctx.query.locale || "en") as any;
 
 		// Use strapi.documents for Strapi v5
 		const result = await strapi.documents("api::page.page").findMany({
 			filters: { slug },
+			locale,
 			populate: {
 				blocks: {
 					on: {
@@ -128,22 +130,6 @@ export default factories.createCoreController("api::page.page", {
 										"width",
 										"height",
 									],
-								},
-							},
-						},
-						"page-builder.icon-list-left": {
-							populate: {
-								items: {
-									populate: {
-										icon: {
-											fields: [
-												"url",
-												"alternativeText",
-												"width",
-												"height",
-											],
-										},
-									},
 								},
 							},
 						},
@@ -273,22 +259,6 @@ export default factories.createCoreController("api::page.page", {
 									"width",
 									"height",
 								],
-							},
-						},
-					},
-					"page-builder.icon-list-left": {
-						populate: {
-							items: {
-								populate: {
-									icon: {
-										fields: [
-											"url",
-											"alternativeText",
-											"width",
-											"height",
-										],
-									},
-								},
 							},
 						},
 					},

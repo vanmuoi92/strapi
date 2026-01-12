@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Spin, Empty } from "antd";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { usePageBySlug } from "@/hooks/useGlobal";
 import { BlockRenderer } from "@/components/Blocks";
 import styles from "./pages.module.scss";
@@ -10,8 +11,16 @@ interface PageDetailProps {
 
 const PageDetail: React.FC<PageDetailProps> = ({ slug: propSlug }) => {
 	const { slug: paramSlug } = useParams<{ slug: string }>();
+	const navigate = useNavigate();
 	const slug = propSlug || paramSlug;
 	const { data: page, isLoading } = usePageBySlug(slug || "");
+
+	useEffect(() => {
+		// Only sync if utilizing paramSlug (dynamic route)
+		if (paramSlug && page && page.slug && page.slug !== paramSlug) {
+			navigate(`/${page.slug}`, { replace: true });
+		}
+	}, [page, paramSlug, navigate]);
 
 	if (isLoading) {
 		return (

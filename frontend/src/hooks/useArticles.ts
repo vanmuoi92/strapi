@@ -5,37 +5,42 @@ import {
 	fetchArticleById,
 	fetchArticleBySlug,
 } from "@/services/api";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { Article } from "@/types/index";
 
 export const useArticles = () => {
+	const { language } = useLanguage();
 	return useQuery<Article[]>({
-		queryKey: ["articles"],
-		queryFn: fetchArticles,
+		queryKey: ["articles", language],
+		queryFn: () => fetchArticles(language),
 		staleTime: 5 * 60 * 1000,
 	});
 };
 
 export const useLatestArticles = (limit: number = 3) => {
+	const { language } = useLanguage();
 	return useQuery<Article[]>({
-		queryKey: ["articles", "latest", limit],
-		queryFn: () => fetchLatestArticles(limit),
+		queryKey: ["articles", "latest", limit, language],
+		queryFn: () => fetchLatestArticles(limit, language),
 		staleTime: 5 * 60 * 1000,
 	});
 };
 
 export const useArticleById = (id: string) => {
+	const { language } = useLanguage();
 	return useQuery<Article>({
-		queryKey: ["article", id],
-		queryFn: () => fetchArticleById(id),
+		queryKey: ["article", id, language],
+		queryFn: () => fetchArticleById(id, language),
 		staleTime: 5 * 60 * 1000,
 		enabled: !!id,
 	});
 };
 
 export const useArticleBySlug = (slug: string) => {
+	const { language } = useLanguage();
 	return useQuery<Article>({
-		queryKey: ["article", slug],
-		queryFn: () => fetchArticleBySlug(slug),
+		queryKey: ["article", slug, language],
+		queryFn: () => fetchArticleBySlug(slug, language),
 		staleTime: 5 * 60 * 1000,
 		enabled: !!slug,
 	});

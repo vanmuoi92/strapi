@@ -1,14 +1,14 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "sizes",
   "info": {
-    "singularName": "category",
-    "pluralName": "categories",
-    "displayName": "Category",
-    "description": "Organize your content into categories"
+    "singularName": "size",
+    "pluralName": "sizes",
+    "displayName": "Size",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {
     "i18n": {
@@ -22,25 +22,23 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
-    "description": {
-      "type": "text",
+    "code": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
-    "articles": {
+    "products": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::article.article",
-      "mappedBy": "categories"
+      "target": "api::product.product",
+      "inversedBy": "sizes"
     }
   }
 }

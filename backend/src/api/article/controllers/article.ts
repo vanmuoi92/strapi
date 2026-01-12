@@ -7,10 +7,27 @@ import { factories } from "@strapi/strapi";
 export default factories.createCoreController("api::article.article", {
 	async findBySlug(ctx) {
 		const { slug } = ctx.params;
+		const { locale } = ctx.query;
 
-		// Use strapi.documents for Strapi v5
+		// 1. Find the document ID by slug (search in all locales)
+		const articles = await strapi
+			.documents("api::article.article")
+			.findMany({
+				filters: { slug },
+				locale: "*", // Search across all locales
+				limit: 1,
+			});
+
+		if (!articles || articles.length === 0) {
+			return ctx.notFound("Article not found");
+		}
+
+		const documentId = articles[0].documentId;
+
+		// 2. Fetch the localized version using the documentId
 		const result = await strapi.documents("api::article.article").findMany({
-			filters: { slug },
+			filters: { documentId },
+			locale: locale as string, // Use the requested locale
 			populate: {
 				blocks: {
 					on: {
@@ -149,7 +166,7 @@ export default factories.createCoreController("api::article.article", {
 		});
 
 		if (!result || result.length === 0) {
-			return ctx.notFound("Article not found");
+			return ctx.notFound("Article not found in requested locale");
 		}
 
 		const sanitizedEntity = await this.sanitizeOutput(result[0], ctx);

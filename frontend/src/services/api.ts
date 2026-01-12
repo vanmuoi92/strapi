@@ -19,9 +19,16 @@ apiClient.interceptors.response.use(
 	},
 );
 
-export const fetchArticles = async () => {
+export const addLocaleParam = (url: string, locale?: string) => {
+	if (!locale) return url;
+	const separator = url.includes("?") ? "&" : "?";
+	return `${url}${separator}locale=${locale}`;
+};
+
+export const fetchArticles = async (locale?: string) => {
 	try {
-		const response = await apiClient.get("/articles?populate=*");
+		const url = addLocaleParam("/articles?populate=*", locale);
+		const response = await apiClient.get(url);
 		return response.data.data || [];
 	} catch (error) {
 		console.error("Error fetching articles:", error);
@@ -29,11 +36,16 @@ export const fetchArticles = async () => {
 	}
 };
 
-export const fetchLatestArticles = async (limit: number = 3) => {
+export const fetchLatestArticles = async (
+	limit: number = 3,
+	locale?: string,
+) => {
 	try {
-		const response = await apiClient.get(
+		const url = addLocaleParam(
 			`/articles?populate=*&sort=publishedAt:desc&pagination[limit]=${limit}`,
+			locale,
 		);
+		const response = await apiClient.get(url);
 		return response.data.data || [];
 	} catch (error) {
 		console.error("Error fetching latest articles:", error);
@@ -41,9 +53,10 @@ export const fetchLatestArticles = async (limit: number = 3) => {
 	}
 };
 
-export const fetchArticleById = async (id: string) => {
+export const fetchArticleById = async (id: string, locale?: string) => {
 	try {
-		const response = await apiClient.get(`/articles/${id}?populate=*`);
+		const url = addLocaleParam(`/articles/${id}?populate=*`, locale);
+		const response = await apiClient.get(url);
 		return response.data.data;
 	} catch (error) {
 		console.error("Error fetching article:", error);
@@ -51,9 +64,10 @@ export const fetchArticleById = async (id: string) => {
 	}
 };
 
-export const fetchArticleBySlug = async (slug: string) => {
+export const fetchArticleBySlug = async (slug: string, locale?: string) => {
 	try {
-		const response = await apiClient.get(`/articles/slug/${slug}`);
+		const url = addLocaleParam(`/articles/slug/${slug}`, locale);
+		const response = await apiClient.get(url);
 		return response.data.data || null;
 	} catch (error) {
 		console.error("Error fetching article:", error);
@@ -81,9 +95,10 @@ export const fetchCategories = async () => {
 	}
 };
 
-export const fetchGlobal = async () => {
+export const fetchGlobal = async (locale?: string) => {
 	try {
-		const response = await apiClient.get("/global?populate=*");
+		const url = addLocaleParam("/global?populate=*", locale);
+		const response = await apiClient.get(url);
 		return response.data.data || null;
 	} catch (error) {
 		console.error("Error fetching global:", error);
@@ -91,9 +106,10 @@ export const fetchGlobal = async () => {
 	}
 };
 
-export const fetchPages = async () => {
+export const fetchPages = async (locale?: string) => {
 	try {
-		const response = await apiClient.get("/pages?populate=*");
+		const url = addLocaleParam("/pages?populate=*", locale);
+		const response = await apiClient.get(url);
 		return response.data.data || [];
 	} catch (error) {
 		console.error("Error fetching pages:", error);
@@ -101,12 +117,111 @@ export const fetchPages = async () => {
 	}
 };
 
-export const fetchPageBySlug = async (slug: string) => {
+export const fetchPageBySlug = async (slug: string, locale?: string) => {
 	try {
-		const response = await apiClient.get(`/pages/slug/${slug}`);
+		const url = addLocaleParam(`/pages/slug/${slug}`, locale);
+		const response = await apiClient.get(url);
 		return response.data.data || null;
 	} catch (error) {
 		console.error("Error fetching page:", error);
 		return null;
+	}
+};
+
+export const fetchProducts = async (
+	filters: {
+		category?: string;
+		size?: string;
+		colour?: string;
+		page?: number;
+		pageSize?: number;
+	} = {},
+	locale?: string,
+) => {
+	try {
+		const params = new URLSearchParams();
+
+		// Add filter parameters
+		if (filters.category) params.append("category", filters.category);
+		if (filters.size) params.append("size", filters.size);
+		if (filters.colour) params.append("colour", filters.colour);
+
+		// Add pagination parameters
+		if (filters.page) params.append("page", filters.page.toString());
+		if (filters.pageSize)
+			params.append("pageSize", filters.pageSize?.toString() || "12");
+
+		const queryString = params.toString();
+		const baseUrl = queryString ? `/products?${queryString}` : `/products`;
+		const url = addLocaleParam(baseUrl, locale);
+
+		const response = await apiClient.get(url);
+		return response.data;
+	} catch (error) {
+		console.error("Error fetching products:", error);
+		return {
+			data: [],
+			meta: {
+				pagination: { total: 0, page: 1, pageSize: 12, pageCount: 0 },
+			},
+		};
+	}
+};
+
+export const fetchProductById = async (id: string, locale?: string) => {
+	try {
+		const url = addLocaleParam(`/products/${id}?populate=*`, locale);
+		const response = await apiClient.get(url);
+		return response.data.data;
+	} catch (error) {
+		console.error("Error fetching product:", error);
+		return null;
+	}
+};
+
+export const fetchProductBySlug = async (slug: string, locale?: string) => {
+	try {
+		const url = addLocaleParam(`/products/slug/${slug}`, locale);
+		const response = await apiClient.get(url);
+		return response.data.data;
+	} catch (error) {
+		console.error("Error fetching product by slug:", error);
+		return null;
+	}
+};
+
+export const fetchProductCategories = async (locale?: string) => {
+	try {
+		const url = addLocaleParam(
+			"/product-categories?populate=products",
+			locale,
+		);
+		const response = await apiClient.get(url);
+		return response.data.data || [];
+	} catch (error) {
+		console.error("Error fetching product categories:", error);
+		return [];
+	}
+};
+
+export const fetchSizes = async (locale?: string) => {
+	try {
+		const url = addLocaleParam("/sizes?populate=products", locale);
+		const response = await apiClient.get(url);
+		return response.data.data || [];
+	} catch (error) {
+		console.error("Error fetching sizes:", error);
+		return [];
+	}
+};
+
+export const fetchColours = async (locale?: string) => {
+	try {
+		const url = addLocaleParam("/colours?populate=products", locale);
+		const response = await apiClient.get(url);
+		return response.data.data || [];
+	} catch (error) {
+		console.error("Error fetching colours:", error);
+		return [];
 	}
 };

@@ -1,60 +1,128 @@
 {
-	"kind": "singleType",
-	"collectionName": "globals",
-	"info": {
-		"singularName": "global",
-		"pluralName": "globals",
-		"displayName": "Global",
-		"description": "Define global settings"
-	},
-	"options": {
-		"draftAndPublish": false
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"siteName": {
-			"type": "string",
-			"required": true
-		},
-		"favicon": {
-			"type": "media",
-			"multiple": false,
-			"required": false,
-			"allowedTypes": ["images", "files", "videos"]
-		},
-		"logo": {
-			"type": "media",
-			"multiple": false,
-			"allowedTypes": ["images", "files", "videos", "audios"]
-		},
-		"siteDescription": {
-			"type": "text",
-			"required": true
-		},
-		"defaultSeo": {
-			"type": "component",
-			"component": "shared.seo",
-			"repeatable": false
-		},
-		"mainMenu": {
-			"type": "component",
-			"component": "global-share.menu-item",
-			"repeatable": true
-		},
-		"footerContactInfo": {
-			"type": "blocks"
-		},
-		"iframeMap": {
-			"type": "text"
-		},
-		"facebookUrl": {
-			"type": "string"
-		},
-		"instagramUrl": {
-			"type": "string"
-		},
-		"youtubeUrl": {
-			"type": "string"
-		}
-	}
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global",
+    "description": "Define global settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "favicon": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "siteDescription": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "defaultSeo": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "mainMenu": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "global-share.menu-item",
+      "repeatable": true
+    },
+    "footerContactInfo": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "iframeMap": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "facebookUrl": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "instagramUrl": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "youtubeUrl": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
 }

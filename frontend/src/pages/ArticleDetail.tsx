@@ -1,13 +1,21 @@
 import { Spin, Empty, Breadcrumb } from "antd";
 import { BlockRenderer } from "@/components/Blocks";
-import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useArticleBySlug } from "@/hooks/useArticles";
 import { getImageUrl } from "@/utils/url";
 import styles from "./pages.module.scss";
 
 const ArticleDetail: React.FC = () => {
 	const { slug } = useParams<{ slug: string }>();
+	const navigate = useNavigate();
 	const { data: article, isLoading } = useArticleBySlug(slug || "");
+
+	useEffect(() => {
+		if (article && article.slug && article.slug !== slug) {
+			navigate(`/articles/${article.slug}`, { replace: true });
+		}
+	}, [article, slug, navigate]);
 
 	if (isLoading) {
 		return (

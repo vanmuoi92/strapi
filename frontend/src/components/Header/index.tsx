@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Layout, Menu, Button, Drawer } from "antd";
+import { Layout, Menu, Button, Drawer, Select } from "antd";
 import { Link } from "react-router-dom";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { getImageUrl } from "@/utils/url";
 import styles from "./header.module.scss";
 
@@ -36,6 +37,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 	const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+	const { language, setLanguage } = useLanguage();
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -97,15 +99,63 @@ const Header: React.FC<HeaderProps> = ({
 				</div>
 				<div className={styles.menuWrapper}>
 					{!isMobile ? (
-						<Menu
-							theme="dark"
-							mode="horizontal"
-							defaultSelectedKeys={["1"]}
-							items={menuItems}
-							className={styles.menu}
-						/>
+						<>
+							<Menu
+								theme="dark"
+								mode="horizontal"
+								defaultSelectedKeys={["1"]}
+								items={menuItems}
+								className={styles.menu}
+							/>
+							<div className={styles.headerActions}>
+								<Select
+									value={language}
+									onChange={setLanguage}
+									options={[
+										{ label: "English", value: "en" },
+										{ label: "Tiếng Việt", value: "vi" },
+									]}
+									style={{ width: 120 }}
+								/>
+								<Link to="/products">
+									<Button
+										type="text"
+										icon={
+											<ShoppingCartOutlined
+												style={{
+													color: "white",
+													fontSize: 18,
+												}}
+											/>
+										}
+										title="View Products"
+									/>
+								</Link>
+							</div>
+						</>
 					) : (
 						<div className={styles.mobileActions}>
+							<Select
+								value={language}
+								onChange={setLanguage}
+								options={[
+									{ label: "English", value: "en" },
+									{ label: "Tiếng Việt", value: "vi" },
+								]}
+								style={{ width: 100 }}
+								size="small"
+							/>
+							<Link to="/products">
+								<Button
+									type="text"
+									icon={
+										<ShoppingCartOutlined
+											style={{ color: "white" }}
+										/>
+									}
+									title="View Products"
+								/>
+							</Link>
 							<Button
 								type="text"
 								icon={
