@@ -14,6 +14,7 @@ export default factories.createCoreController(
 				colour,
 				page = 1,
 				pageSize = 12,
+				locale,
 			} = ctx.query;
 
 			// Build filters object
@@ -22,21 +23,21 @@ export default factories.createCoreController(
 			// Filter by category
 			if (category) {
 				filters.categories = {
-					id: parseInt(category as string),
+					documentId: category as string,
 				};
 			}
 
 			// Filter by size
 			if (size) {
 				filters.sizes = {
-					id: parseInt(size as string),
+					documentId: size as string,
 				};
 			}
 
 			// Filter by colour
 			if (colour) {
 				filters.colours = {
-					id: parseInt(colour as string),
+					documentId: colour as string,
 				};
 			}
 
@@ -65,8 +66,11 @@ export default factories.createCoreController(
 						sort: [{ publishedAt: "desc" }],
 						start,
 						limit,
+						locale: locale as string,
 					}),
-					strapi.documents("api::product.product").count({ filters }),
+					strapi
+						.documents("api::product.product")
+						.count({ filters, locale: locale as string }),
 				]);
 
 				const sanitizedResults = await this.sanitizeOutput(
@@ -74,17 +78,14 @@ export default factories.createCoreController(
 					ctx,
 				);
 
-				return this.transformResponse({
-					data: sanitizedResults,
-					meta: {
-						pagination: {
-							page: parseInt(page as string),
-							pageSize: parseInt(pageSize as string),
-							pageCount: Math.ceil(
-								total / parseInt(pageSize as string),
-							),
-							total,
-						},
+				return this.transformResponse(sanitizedResults, {
+					pagination: {
+						page: parseInt(page as string),
+						pageSize: parseInt(pageSize as string),
+						pageCount: Math.ceil(
+							total / parseInt(pageSize as string),
+						),
+						total,
 					},
 				});
 			} catch (error) {

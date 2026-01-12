@@ -86,7 +86,7 @@ const Products: React.FC = () => {
 							options={
 								categories?.map((cat: ProductCategory) => ({
 									label: cat.name,
-									value: cat.id.toString(),
+									value: cat.documentId,
 								})) || []
 							}
 						/>
@@ -102,7 +102,7 @@ const Products: React.FC = () => {
 							options={
 								sizes?.map((size: Size) => ({
 									label: size.name,
-									value: size.id.toString(),
+									value: size.documentId,
 								})) || []
 							}
 						/>
@@ -118,7 +118,7 @@ const Products: React.FC = () => {
 							options={
 								colours?.map((colour: Colour) => ({
 									label: colour.name,
-									value: colour.id.toString(),
+									value: colour.documentId,
 								})) || []
 							}
 						/>
