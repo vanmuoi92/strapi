@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({
 									]}
 									style={{ width: 120 }}
 								/>
-								<Link to="/products">
+								{/* <Link to="/products">
 									<Button
 										type="text"
 										icon={
@@ -130,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({
 										}
 										title="View Products"
 									/>
-								</Link>
+								</Link> */}
 							</div>
 						</>
 					) : (
@@ -145,7 +145,7 @@ const Header: React.FC<HeaderProps> = ({
 								style={{ width: 100 }}
 								size="small"
 							/>
-							<Link to="/products">
+							{/* <Link to="/products">
 								<Button
 									type="text"
 									icon={
@@ -155,7 +155,7 @@ const Header: React.FC<HeaderProps> = ({
 									}
 									title="View Products"
 								/>
-							</Link>
+							</Link> */}
 							<Button
 								type="text"
 								icon={
