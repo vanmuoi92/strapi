@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout, Menu, Button, Drawer, Select } from "antd";
 import { Link } from "react-router-dom";
-import { MenuOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getImageUrl } from "@/utils/url";
 import styles from "./header.module.scss";

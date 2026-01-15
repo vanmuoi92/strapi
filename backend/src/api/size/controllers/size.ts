@@ -24,10 +24,9 @@ export default factories.createCoreController(
 		},
 		async count(ctx) {
 			try {
-				const result = await strapi.entityService.count(
-					"api::size.size",
-					ctx.query,
-				);
+				const result = await strapi
+					.documents("api::size.size")
+					.count({ filters: ctx.query.filters });
 				ctx.send({ count: result });
 			} catch (error) {
 				ctx.badRequest("Unable to count sizes");
