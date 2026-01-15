@@ -110,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({
 							<div className={styles.headerActions}>
 								<Select
 									value={language}
-									onChange={setLanguage}
+									onChange={(value) => setLanguage(value)}
 									options={[
 										{ label: "English", value: "en" },
 										{ label: "Tiếng Việt", value: "vi" },
@@ -137,7 +137,7 @@ const Header: React.FC<HeaderProps> = ({
 						<div className={styles.mobileActions}>
 							<Select
 								value={language}
-								onChange={setLanguage}
+								onChange={(value) => setLanguage(value)}
 								options={[
 									{ label: "English", value: "en" },
 									{ label: "Tiếng Việt", value: "vi" },

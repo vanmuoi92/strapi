@@ -6,11 +6,17 @@ import ArticleDetail from "@/pages/ArticleDetail";
 import PageDetail from "@/pages/PageDetail";
 import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 
 import { App as AntApp, ConfigProvider } from "antd";
 
 const queryClient = new QueryClient();
+
+const HomePage = () => {
+	const { language } = useLanguage();
+	const slug = language === "vi" ? "trang-chu" : "home";
+	return <PageDetail key={language} slug={slug} />;
+};
 
 function App() {
 	return (
@@ -36,10 +42,7 @@ function App() {
 						<BrowserRouter>
 							<AppLayout>
 								<Routes>
-									<Route
-										path="/"
-										element={<PageDetail slug="home" />}
-									/>
+									<Route path="/" element={<HomePage />} />
 									<Route
 										path="/articles"
 										element={<Articles />}
